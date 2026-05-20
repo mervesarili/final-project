@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcard App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── HEADER ────────────────────────────────────────────────────
+       A good place for your app name and any top-level navigation.  -->
+
+
+  <main>
+
+    <!-- ── VIEW: MANAGE DECK ──────────────────────────────────────
+         This is the screen where the user builds their deck.
+
+         Think about including:
+           - A form with a "question" field, an "answer" field,
+             and a submit button to add the card
+           - A list that shows all the cards added so far,
+             with a delete button on each one
+           - A "Start Studying" button (disabled when deck is empty)
+
+         When the user clicks "Start Studying", hide this section
+         and show the study section below — or navigate to a second
+         HTML page. Your team decides.
+
+         Option A — single page, two sections in this file.
+           Both sections exist in the HTML at the same time; you
+           hide one and show the other with JavaScript when the
+           user clicks a button:
+
+             // in your CSS:
+             .hidden { display: none; }
+
+             // in your JS:
+             function showView(viewId) {
+               document.getElementById("manage-view").classList.add("hidden");
+               document.getElementById("study-view").classList.add("hidden");
+               document.getElementById(viewId).classList.remove("hidden");
+             }
+
+             // then call it like:
+             showView("study-view");   // switch to study
+             showView("manage-view");  // switch back
+
+         Option B — two separate HTML files (e.g. index.html and
+           study.html), each with its own layout. You can link
+           between them with a plain anchor tag in the HTML:
+             <a href="study.html">Start Studying</a>
+           or navigate programmatically from JavaScript:
+             window.location.href = "study.html";
+           Either way, the cards array in memory won't survive the
+           navigation — save it first.
+
+    <section id="manage-view">
+
+    </section>
+    -->
+
+
+    <!-- ── VIEW: STUDY SESSION ────────────────────────────────────
+         This is the screen shown during a learning session.
+
+         Think about including:
+           - A visual "card" the user can click to flip and reveal
+             the answer (the flip itself is done with CSS — see
+             styles.css for hints on where to start)
+           - Buttons to mark the card correct or incorrect,
+             shown only after the card is flipped
+           - A way to see how many cards are left
+           - A "Back" or "End session" button
+
+    <section id="study-view">
+
+    </section>
+    -->
+
+  </main>
+
+
+  <!-- ── EXTRA CREDIT: TWO-PLAYER MODE ──────────────────────────── -->
+
+
+  <script src="script.js"></script>
+</body>
+</html>

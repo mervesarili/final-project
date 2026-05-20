@@ -1,0 +1,75 @@
+/* ── CSS CUSTOM PROPERTIES ──────────────────────────────────────
+   Define your colours and any repeated values here once as
+   "variables", then use var(--name) everywhere else in this file.
+   Changing a colour here updates it across the whole app.         */
+:root {
+  /* Colours — pick whatever fits your design */
+  --color-bg:      #ffffff;
+  --color-primary: #333333;
+  --color-accent:  #0066cc;
+
+  /* Card size — adjust to taste */
+  --card-width:  340px;
+  --card-height: 200px;
+}
+
+
+/* ── RESET ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+}
+
+
+/* ── LAYOUT ─────────────────────────────────────────────────── */
+/* TODO: style your header, main content area, views, etc. */
+
+
+/* ── CARD LIST (manage view) ─────────────────────────────────── */
+/* TODO: style the list of cards and the "add card" form */
+
+
+/* ── THE FLASHCARD (study view) ─────────────────────────────── */
+/*
+   The flip animation is pure CSS — JavaScript only adds or removes
+   a class (e.g. "flipped") on the card element.
+
+   A flippable card needs three layers:
+
+     .card         sets the width, height, and perspective
+     .card-inner   the element that actually rotates (transform)
+     .card-front   the question side
+     .card-back    the answer side (hidden by default)
+
+   The key CSS properties to research:
+     - transform-style: preserve-3d
+     - backface-visibility: hidden
+     - transform: rotateY(...)
+     - perspective
+
+   Search: "CSS 3D card flip" for examples and explanations.
+*/
+
+
+/* ── BUTTONS ────────────────────────────────────────────────── */
+/* TODO */
+
+
+/* ── RESPONSIVE DESIGN ──────────────────────────────────────── */
+/*
+   Use @media queries so the layout works on small screens too.
+
+   "Mobile-first" means you write styles for small screens first,
+   then use @media (min-width: ...) to adjust for wider screens:
+
+   @media (min-width: 600px) {
+     // styles that only apply on wider screens
+   }
+*/
