@@ -6,6 +6,7 @@ This is a starter for the flashcard project. It gives you a working HTML/CSS/JS 
 
 ## What you need to build
 
+
 - [ ] **Two views**: a screen for managing your deck (adding cards) and a screen for the learning session. You decide how to switch between them.
 - [ ] **Add cards**: a form where the user can enter a question and an answer. Each card should be stored in JavaScript (as an object? an array of objects? — you decide the shape).
 - [ ] **Cards look like cards**: design them so they visually feel like flashcards.
