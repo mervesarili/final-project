@@ -32,7 +32,16 @@ body {
 
 /* ── LAYOUT ─────────────────────────────────────────────────── */
 /* TODO: style your header, main content area, views, etc. */
-
+h1 {
+    color: #58023B;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: larger;
+    background-color: #B73050;
+    border: 5px;
+    border-style: dotted;
+    border-color: #FFA30C;
+    padding: 2px;
+}
 
 /* ── CARD LIST (manage view) ─────────────────────────────────── */
 /* TODO: style the list of cards and the "add card" form */
