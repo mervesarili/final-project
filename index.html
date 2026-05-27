@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcard App</title>
+  <title>Kortly</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,6 +13,21 @@
 
 
   <main>
+
+
+<div class="container">
+  <div class="cards">
+    <ul id="cardlist"> 
+
+    </ul> 
+  </div>
+  <div>2</div> 
+</div>
+</div>
+
+
+
+
 
     <!-- ── VIEW: MANAGE DECK ──────────────────────────────────────
          This is the screen where the user builds their deck.
@@ -47,18 +62,7 @@
              showView("study-view");   // switch to study
              showView("manage-view");  // switch back
 
-         Option B — two separate HTML files (e.g. index.html and
-           study.html), each with its own layout. You can link
-           between them with a plain anchor tag in the HTML:
-             <a href="study.html">Start Studying</a>
-           or navigate programmatically from JavaScript:
-             window.location.href = "study.html";
-           Either way, the cards array in memory won't survive the
-           navigation — save it first.
-
-    <section id="manage-view">
-
-    </section>
+      
     -->
 
 
@@ -84,6 +88,15 @@
 
   <!-- ── EXTRA CREDIT: TWO-PLAYER MODE ──────────────────────────── -->
 
+<script> 
+
+document.addEventListener("DOMContentLoaded", function() {
+  
+    console.log("The HTML is fully loaded and ready to go."); 
+  
+});
+
+</script>  
 
   <script src="script.js"></script>
 </body>

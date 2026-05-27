@@ -31,7 +31,24 @@ body {
 /* ── LAYOUT ─────────────────────────────────────────────────── */
 /* TODO: style your header, main content area, views, etc. */
 
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
 
+.container div {
+  background-color: #f1f1f1;
+  margin: 100px;
+  padding: 100px;
+  text-align: center;  
+  font-size: 30px;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-evenly;
+}
+ 
 /* ── CARD LIST (manage view) ─────────────────────────────────── */
 /* TODO: style the list of cards and the "add card" form */
 

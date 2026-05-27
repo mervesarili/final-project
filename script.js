@@ -33,9 +33,8 @@ function addCard(question, answer) {
 // add a new <li> for each one.
 
 function renderCardList() {
-  // TODO
-}
 
+}
 
 // ── DELETING A CARD ──────────────────────────────────────────────
 
@@ -99,6 +98,12 @@ function saveDeck() {
 }
 
 function loadDeck() {
+     let cardList = document.getElementById("cardlist");
+
+const li = document.createElement("li"); 
+li.textContent = "forth card";
+ cardList.appendChild (li);
+
   // TODO: load saved cards on startup, or start with an empty array
 }
 
@@ -120,6 +125,7 @@ function exportDeck() {
 // place to do any setup that reads or writes to the page.
 
 document.addEventListener("DOMContentLoaded", function () {
+
 
   loadDeck();
 
