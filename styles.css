@@ -4,9 +4,11 @@
    Changing a colour here updates it across the whole app.         */
 :root {
   /* Colours — pick whatever fits your design */
-  --color-bg:      #ffffff;
-  --color-primary: #333333;
-  --color-accent:  #0066cc;
+  --color-bg:      #E2EEEB;
+  --color-primary: #B73050;
+  --color-accent:  #58023B;
+  --color-extra:   #B4EFFF;
+  --color-contrast: #FFA30C;
 
   /* Card size — adjust to taste */
   --card-width:  340px;
