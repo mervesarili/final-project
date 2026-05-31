@@ -52,7 +52,8 @@
   <div class="container menu-container"> 
         <h1>Kortly</h1>
         
-        <button id="buttonlonewolf" class="menu-btn">
+        <button id="buttonlonewolf" class="menu-btn"> 
+
           LONE WOLF
         </button>
         
@@ -64,13 +65,13 @@
 <section id="study-view" class="hidden study-section">
       
       <div class="study-header">
-        <h2 id="progress-text" class="progress-title">1/10 H2</h2>
+        <h2 id="progress-text" class="progress-title">1/10</h2>
       </div>
 
       <div class="study-board">
         
         <div class="board-side">
-          <button id="incorrect-btn" class="eval-btn incorrect-bg">✖</button>
+          <button id="buttonfalse" class="eval-btn incorrect-bg">✖</button>
           <p class="eval-label">false</p>
         </div>
 
@@ -86,8 +87,8 @@
         </div>
 
         <div class="board-side">
-          <button id="correct-btn" class="eval-btn correct-bg">✔</button>
-          <p class="eval-label bold">TRUE</p>
+          <button id="buttontrue" class="eval-btn correct-bg">✔</button>
+          <p class="eval-label bold">true</p>
         </div>
 
       </div>
@@ -95,12 +96,13 @@
       <div class="study-footer">
         <div class="flip-action">
           <button id="flip-btn" class="flip-btn">Click the card to flip it</button>
-          <span class="flip-label">BUTTON FLIP</span>
+          <span class="flip-label"></span>
         </div>
 
         <div class="shuffle-action">
-          <span class="shuffle-label">BUTTON SHUFFLE</span>
-          <span class="shuffle-icon">🔄</span>
+           <button id="shuffle-btn" class="shuffle-btn">Shuffle Cards</button>
+          <span class="shuffle-label"></span>
+         
         </div>
       </div>
 
