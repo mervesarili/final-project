@@ -8,22 +8,105 @@
 </head>
 <body>
 
-  <!-- ── HEADER ────────────────────────────────────────────────────
-       A good place for your app name and any top-level navigation.  -->
-
 
   <main>
 
 
-<div class="container">
-  <div class="cards">
-    <ul id="cardlist"> 
 
+    
+<section id="manage-view" class="manage-layout">
+      
+      <div class="container add-card-container">
+        <button id="buttonaddcard" class="circle-btn">
+          ADD<br>A NEW<br>CARD
+        </button>
+        
+        <form id="add-form" style="display: none;">
+          <input type="text" id="question-input" placeholder="Question">
+          <input type="text" id="answer-input" placeholder="Answer">
+          <button type="submit">Save</button>
+        </form>
+      </div>
+        
+ <div class="container list-container">
+        <ul id="cardlist"> 
+          <li class="card-item">card 1 <button class="delete-btn">✕</button></li>
+          <li class="card-item">card 2 <button class="delete-btn">✕</button></li>
+        </ul> 
+      </div>
+
+    <ul id="cardlist"> 
+<ul id="cardlist"> 
+          <li class="card-item">
+            <span>card 1</span>
+            <button class="delete-btn">✕</button>
+          </li>
+          <li class="card-item">
+            <span>card 2</span>
+            <button class="delete-btn">✕</button>
+          </li>
     </ul> 
+  
   </div>
-  <div>2</div> 
-</div>
-</div>
+
+  <div class="container menu-container"> 
+        <h1>Kortly</h1>
+        
+        <button id="buttonlonewolf" class="menu-btn">
+          LONE WOLF
+        </button>
+        
+        <button id="buttonplay" class="menu-btn">
+          PLAY WITH A FRIEND
+        </button>
+      </div> 
+ 
+<section id="study-view" class="hidden study-section">
+      
+      <div class="study-header">
+        <h2 id="progress-text" class="progress-title">1/10 H2</h2>
+      </div>
+
+      <div class="study-board">
+        
+        <div class="board-side">
+          <button id="incorrect-btn" class="eval-btn incorrect-bg">✖</button>
+          <p class="eval-label">false</p>
+        </div>
+
+        <div class="card" id="flashcard">
+          <div class="card-inner">
+            <div class="card-front">
+              <h2 id="card-question">Soru Alanı</h2>
+            </div>
+            <div class="card-back hidden">
+              <h2 id="card-answer">Cevap Alanı</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="board-side">
+          <button id="correct-btn" class="eval-btn correct-bg">✔</button>
+          <p class="eval-label bold">TRUE</p>
+        </div>
+
+      </div>
+
+      <div class="study-footer">
+        <div class="flip-action">
+          <button id="flip-btn" class="flip-btn">Click the card to flip it</button>
+          <span class="flip-label">BUTTON FLIP</span>
+        </div>
+
+        <div class="shuffle-action">
+          <span class="shuffle-label">BUTTON SHUFFLE</span>
+          <span class="shuffle-icon">🔄</span>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
 
 
 
@@ -83,20 +166,16 @@
     </section>
     -->
 
-  </main>
+
 
 
   <!-- ── EXTRA CREDIT: TWO-PLAYER MODE ──────────────────────────── -->
 
 <script> 
-
-document.addEventListener("DOMContentLoaded", function() {
-  
-    console.log("The HTML is fully loaded and ready to go."); 
-  
-});
-
-</script>  
+  document.addEventListener("DOMContentLoaded", function() {
+      console.log("The HTML is fully loaded and ready to go."); 
+  });
+  </script>  
 
   <script src="script.js"></script>
 </body>
