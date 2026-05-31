@@ -140,6 +140,14 @@ function flipCard() {
 function nextCard() {
   // TODO: advance to the next card in the shuffled session,
   //       or end the session if there are no more cards
+currentCardIndex = currentCardIndex + 1
+if (currentCardIndex < sessionCards.length) {
+    let nextCardToShow = sessionCards[currentCardIndex];
+    showcard(nextCardToShow); 
+  } else {
+    console.log("You finished all the cards!");
+    currentCardIndex = 0;
+  }
 }
 
 
