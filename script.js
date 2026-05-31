@@ -14,6 +14,9 @@ let cards = [
   { id: 2, question: "What is the goal of CSS ?", answer: " To create design for HTML content" }
 ];
 
+let sessionCards = [];
+let currentCardIndex = 0;
+
 
 // ── ADDING A CARD ────────────────────────────────────────────────
 //
@@ -157,7 +160,7 @@ function flipCard() {
     console.log("Card flipped!");
   }
 }
-}
+
 
 
 // ── MOVING TO THE NEXT CARD ──────────────────────────────────────
