@@ -251,5 +251,10 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // Attach other listeners here as you build more features...
 
+  const flipBtn = document.getElementById("flip-btn");
+  if (flipBtn) {
+    flipBtn.addEventListener("click", flipCard);
+  }
+  
 });
 
