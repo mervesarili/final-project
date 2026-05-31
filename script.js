@@ -185,6 +185,15 @@ function exportDeck() {
 
 document.addEventListener("DOMContentLoaded", function () {
  console.log("HTML fully loaded");
+  // For buttons to work
+  const showFormBtn = document.getElementById("buttonaddcard");
+  const addCardForm = document.getElementById("add-form");
+  if (showFormBtn && addCardForm) {
+    showFormBtn.addEventListener("click", function() {
+      // 3. Unhide the form when clicked
+      addCardForm.style.display = "block";
+    });
+  }
 });
 
 
