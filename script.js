@@ -28,7 +28,7 @@ function addcard(question, answer) {
   // biggest number  
   let largestID = cards[0].id // find largest number of card - last card's number 
   for (let index = 0; index < cards.length; index++) {
-    const FlashCard = cards[index].id 
+    const flashCard = cards[index].id 
       if (flashcard > largestID) {
         largestID = flashcard
       }
@@ -136,7 +136,7 @@ function saveDeck() {
 function loadDeck() {
   // TODO: load saved cards on startup, or start with an empty array
 
-  const savedcards = localStorage.getItem("myFlashcards");
+  const savedcards = localstorage.getItem("myFlashcards");
   if (savedcards) {
     cards = JSON.parse(savedCards);
   } else {
