@@ -184,7 +184,8 @@ function exportDeck() {
 // place to do any setup that reads or writes to the page.
 
 document.addEventListener("DOMContentLoaded", function () {
- console.log("Status: Webpage HTML fully loaded. Starting up...");
+ console.log("HTML fully loaded");
+});
 
 
   // Once you have a form in your HTML, attach a submit listener:
