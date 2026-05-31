@@ -183,50 +183,34 @@ function exportDeck() {
 // DOMContentLoaded fires once the HTML is fully parsed — a safe
 // place to do any setup that reads or writes to the page.
 
+// ── EVENT LISTENERS ──────────────────────────────────────────────
+
 document.addEventListener("DOMContentLoaded", function () {
- console.log("HTML fully loaded");
-  // For buttons to work
+  console.log("HTML fully loaded");
+
+  // 1. Show the "Add Card" form when the button is clicked
   const showFormBtn = document.getElementById("buttonaddcard");
   const addCardForm = document.getElementById("add-form");
+  
   if (showFormBtn && addCardForm) {
     showFormBtn.addEventListener("click", function() {
-      // 3. Unhide the form when clicked
       addCardForm.style.display = "block";
     });
   }
-});
 
-
-  // Once you have a form in your HTML, attach a submit listener:
-  //
-  // document.getElementById("add-form").addEventListener("submit", function (e) {
-  //   e.preventDefault(); // stops the page from refreshing
-  //   const question = document.getElementById("question-input").value.trim();
-  //   const answer   = document.getElementById("answer-input").value.trim();
-  //   addCard(question, answer);
-  // });
-
-  const li();
-  // "Add Card" form in html form file by its ID.
-  // make sure html has a form tag <form id="add-form">)
-  let addcardform = document.getElementById("add-form");
-
-  //check if the form actually exists 
-  if (addcardform !== null) {
-    // attach an alarm to the form
-    addcardform.addEventListener("submit", function (event) {
-      // stop the page from refreshing
-      event.preventDefault(); 
+  // 2. Handle the submission of the new card
+  if (addCardForm !== null) {
+    addCardForm.addEventListener("submit", function (event) {
+      event.preventDefault(); // Stop page refresh
       console.log("Action: User submitted the Add Card form!");
-      // find the input text boxes and grab the actual words the user typed (.value).
-      // trim deletes any accidental spaces at the beginning or end.
+      
       let typedQuestion = document.getElementById("question-input").value.trim();
       let typedAnswer   = document.getElementById("answer-input").value.trim();
 
-      // words sent over to addcard function so it can build the card
+      // Send the words over to the addcard function
       addcard(typedQuestion, typedAnswer);
 
-      // text boxes clean and empty for the next card
+      // Clean the text boxes for the next card
       document.getElementById("question-input").value = "";
       document.getElementById("answer-input").value = "";
       console.log("New card sent to the deck, and form cleared");
@@ -234,7 +218,6 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.log("No 'add-form' found on this specific page");
   }
-
   
   // Attach other listeners here as you build more features...
 
