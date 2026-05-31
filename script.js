@@ -182,9 +182,8 @@ function exportDeck() {
 // place to do any setup that reads or writes to the page.
 
 document.addEventListener("DOMContentLoaded", function () {
+ console.log("Status: Webpage HTML fully loaded. Starting up...");
 
-
-  loadDeck();
 
   // Once you have a form in your HTML, attach a submit listener:
   //
@@ -195,8 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //   addCard(question, answer);
   // });
 
-  document.addEventListener("DOMContentLoaded", function () {
-  console.log("Status: Webpage HTML fully loaded. Starting up...");
   loadDeck();
   // "Add Card" form in html form file by its ID.
   // make sure html has a form tag <form id="add-form">)
@@ -209,8 +206,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // stop the page from refreshing
       event.preventDefault(); 
       console.log("Action: User submitted the Add Card form!");
-      // Find the input text boxes and grab the actual words the user typed (.value).
-      // .trim() is a handy tool that deletes any accidental spaces at the beginning or end.
+      // find the input text boxes and grab the actual words the user typed (.value).
+      // trim deletes any accidental spaces at the beginning or end.
       let typedQuestion = document.getElementById("question-input").value.trim();
       let typedAnswer   = document.getElementById("answer-input").value.trim();
 
