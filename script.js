@@ -9,7 +9,10 @@ console.log("Flashcard app loaded");
 // Your team decides the exact shape — agree on it before anyone
 // writes code that creates or reads cards.
 
-let cards = [];
+let cards = [
+  { id: 1, question: "What is a variable?", answer: "A named container for a value." },
+  { id: 2, question: "What is the goal of CSS ?", answer: " To create design for HTML content" }
+];
 
 
 // ── ADDING A CARD ────────────────────────────────────────────────
@@ -20,10 +23,25 @@ let cards = [];
 //   3. Save the updated deck (research: how to persist data in the browser)
 //   4. Update the card list on screen so it reflects the change
 
-function addCard(question, answer) {
-  // TODO
+function addcard(question, answer) {
+  //creating an array
+  // biggest number  
+  let largestID = cards[0].id // find largest number of card - last card's number 
+  for (let index = 0; index < cards.length; index++) {
+    const flashCard = cards[index].id 
+      if (flashcard > largestID) {
+        largestID = flashcard
+      }
+  }
+  const newcard = {
+   id: largestID + 1 ,
+   question,
+   answer
+  }
+  cards.push( newcard);
+  saveDeck();
+  renderCardList();
 }
-
 
 // ── SHOWING CARDS ON SCREEN ──────────────────────────────────────
 //
@@ -38,9 +56,17 @@ function renderCardList() {
 
 // ── DELETING A CARD ──────────────────────────────────────────────
 
-function deleteCard(id) {
+function deletecard(id) {
   // TODO: remove the card with this id from the cards array,
   //       save, and re-render
+  for (let i = 0; i < cards.length; i++) {
+    let selectedcard = cards[i];
+    if (selectedcard.id === id) {
+      cards.splice(i, 1);
+    }
+}
+  saveDeck();
+  renderCardList();
 }
 
 
@@ -58,10 +84,19 @@ function startStudy() {
 
 // ── SHOWING A CARD ───────────────────────────────────────────────
 
-function showCard(card) {
+function showcard(card) {
   // TODO: put the question text into the card element on screen,
   //       and make sure the card starts un-flipped (showing question)
+
+  // ids should match with html 
+  const cardelement = document.getElementById("flashcard"); 
+  const questionelement = document.getElementById("card-question");
+  const answerelement = document.getElementById("card-answer");
+  questionelement.textContent = card.question;
+  answerelement.textContent = card.answer;
+  cardelement.classList.remove("flipped");
 }
+
 
 
 // ── FLIPPING A CARD ──────────────────────────────────────────────
@@ -94,18 +129,30 @@ function nextCard() {
 // and parse it back into an array when loading.
 
 function saveDeck() {
-  // TODO
+  const cardsstring = JSON.stringify(cards);
+  localStorage.setItem("myFlashcards", cardsstring);
 }
 
-function loadDeck() {
-     let cardList = document.getElementById("cardlist");
+function forth() {
+  // TODO: load saved cards on startup, or start with an empty array
 
-const li = document.createElement("li"); 
-li.textContent = "forth card";
- cardList.appendChild (li);
+  const savedcards = localStorage.getItem("myFlashcards");
+  if (savedcards) {
+    cards = JSON.parse(savedcards);
+  } else {
+    if (!cards) {
+       cards = [];
+    }
+  }
+}
+
+//was in the document 
+//const li = document.createElement("li"); 
+//li.textContent = "forth card";
+ //cardList.appendChild (li);
 
   // TODO: load saved cards on startup, or start with an empty array
-}
+
 
 
 // ── EXPORT ───────────────────────────────────────────────────────
@@ -114,9 +161,21 @@ li.textContent = "forth card";
 // Hint: look up Blob and URL.createObjectURL
 
 function exportDeck() {
-  // TODO
+  let data = JSON.stringify(cards, null, 2);
+  
+  // Create the blob using the 'data' variable we just made
+  let fileData = new Blob([data], { type: "application/json" });
+  
+  // Create the link using the 'fileData' blob
+  let link = URL.createObjectURL(fileData);
+  
+  let downloadButton = document.createElement("a");
+  downloadButton.href = link;
+  downloadButton.download = "my_flashcard_deck.json"; 
+  downloadButton.click();
+  URL.revokeObjectURL(link);
+  console.log("Deck downloaded");
 }
-
 
 // ── EVENT LISTENERS ──────────────────────────────────────────────
 //
@@ -125,9 +184,9 @@ function exportDeck() {
 // place to do any setup that reads or writes to the page.
 
 document.addEventListener("DOMContentLoaded", function () {
+ console.log("HTML fully loaded");
+});
 
-
-  loadDeck();
 
   // Once you have a form in your HTML, attach a submit listener:
   //
@@ -138,6 +197,37 @@ document.addEventListener("DOMContentLoaded", function () {
   //   addCard(question, answer);
   // });
 
+  const li();
+  // "Add Card" form in html form file by its ID.
+  // make sure html has a form tag <form id="add-form">)
+  let addcardform = document.getElementById("add-form");
+
+  //check if the form actually exists 
+  if (addcardform !== null) {
+    // attach an alarm to the form
+    addcardform.addEventListener("submit", function (event) {
+      // stop the page from refreshing
+      event.preventDefault(); 
+      console.log("Action: User submitted the Add Card form!");
+      // find the input text boxes and grab the actual words the user typed (.value).
+      // trim deletes any accidental spaces at the beginning or end.
+      let typedQuestion = document.getElementById("question-input").value.trim();
+      let typedAnswer   = document.getElementById("answer-input").value.trim();
+
+      // words sent over to addcard function so it can build the card
+      addcard(typedQuestion, typedAnswer);
+
+      // text boxes clean and empty for the next card
+      document.getElementById("question-input").value = "";
+      document.getElementById("answer-input").value = "";
+      console.log("New card sent to the deck, and form cleared");
+    });
+  } else {
+    console.log("No 'add-form' found on this specific page");
+  }
+
+  
   // Attach other listeners here as you build more features...
 
 });
+
