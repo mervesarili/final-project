@@ -94,13 +94,30 @@ function deletecard(id) {
 
 // ── STARTING A STUDY SESSION ─────────────────────────────────────
 //
-// Before studying you'll want to:
+// Before studying you'll want to:sessionCards.sort(() => Math.random() - 0.5);
+
 //   1. Shuffle a copy of the deck (research a fair shuffle algorithm)
 //   2. Switch the visible view from "manage" to "study"
 //   3. Show the first card
 
 function startStudy() {
-  // TODO
+ if (cards.length === 0) {
+    alert(" the cards should be added");
+    return; // This keyword immediately stops the function from running further
+  }
+  sessionCards = [...cards];
+  sessionCards.sort(() => Math.random() - 0.5);
+  currentCardIndex = 0;
+  document.getElementById("manage-view").classList.add("hidden");
+  document.getElementById("study-view").classList.remove("hidden");
+  showcard(sessionCards[currentCardIndex]);
+  const progressText = document.getElementById("progress-text");
+  if (progressText) {
+    progressText.textContent = "1/" + sessionCards.length;
+  }
+  
+  console.log("Study session started!");
+  
 }
 
 
@@ -132,6 +149,14 @@ function showcard(card) {
 
 function flipCard() {
   // TODO
+  // CSS needed 
+  
+  const cardelement = document.getElementById("flashcard");
+  if (cardelement !== null) {
+    cardelement.classList.toggle("flipped");
+    console.log("Card flipped!");
+  }
+}
 }
 
 
@@ -140,6 +165,14 @@ function flipCard() {
 function nextCard() {
   // TODO: advance to the next card in the shuffled session,
   //       or end the session if there are no more cards
+currentCardIndex = currentCardIndex + 1
+if (currentCardIndex < sessionCards.length) {
+    let nextCardToShow = sessionCards[currentCardIndex];
+    showcard(nextCardToShow); 
+  } else {
+    console.log("You finished all the cards!");
+    currentCardIndex = 0;
+  }
 }
 
 
@@ -243,5 +276,14 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // Attach other listeners here as you build more features...
 
+  const flipBtn = document.getElementById("flip-btn");
+  if (flipBtn) {
+    flipBtn.addEventListener("click", flipCard);
+  }
+
+  const loneWolfBtn = document.getElementById("buttonlonewolf");
+  if (loneWolfBtn) {
+    loneWolfBtn.addEventListener("click", startStudy);
+  }
 });
 

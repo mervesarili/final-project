@@ -6,13 +6,19 @@
   /* Colours — pick whatever fits your design */
   --color-bg:      #E2EEEB;
   --color-primary: #B73050;
-  --color-accent:  #58023B;
-  --color-extra:   #B4EFFF;
-  --color-contrast: #FFA30C;
+  --color-dark:  #58023B;
+  --color-secondary:   #B4EFFF;
+  --color-button: #FFA30C;
 
   /* Card size — adjust to taste */
   --card-width:  340px;
   --card-height: 200px;
+
+    /* Border radius */
+  --radius-large: 35px;
+  --radius-medium: 20px;
+  --radius-circle: 50%;
+
 }
 
 
@@ -30,39 +36,64 @@ body {
 }
 
 
+
 /* ── LAYOUT ─────────────────────────────────────────────────── */
 /* TODO: style your header, main content area, views, etc. */
-<<<<<<< HEAD
 
-.container {
-  display: flex;
-  justify-content: space-evenly;
-=======
-h1 {
-    color: #58023B;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: larger;
-    background-color: #B73050;
-    border: 5px;
-    border-style: dotted;
-    border-color: #FFA30C;
-    padding: 2px;
->>>>>>> 5f8558c1680d67a21f52f9055b8cf4fec4b0492a
+
+/* ── MANAGE VIEW LAYOUT ────────────── */
+
+.manage-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 100vh;
+
+    padding: 40px 60px;
 }
 
-.container div {
-  background-color: #f1f1f1;
-  margin: 100px;
-  padding: 100px;
-  text-align: center;  
-  font-size: 30px;
+/* Left column */
+.add-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.cards {
-  display: flex;
-  justify-content: space-evenly;
+/* Center column */
+.list-container {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 40px;
+}
+
+/* Right column */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 25px;
+}
+
+/* App title */
+.menu-container h1 {
+    color: var(--color-secondary);
+
+    font-size: 5rem;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
 }
  
+
+
 /* ── CARD LIST (manage view) ─────────────────────────────────── */
 /* TODO: style the list of cards and the "add card" form */
 
