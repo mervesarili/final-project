@@ -134,7 +134,6 @@ function flipCard() {
   // TODO
   // CSS needed 
   
-  function flipCard() {
   const cardelement = document.getElementById("flashcard");
   if (cardelement !== null) {
     cardelement.classList.toggle("flipped");
