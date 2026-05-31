@@ -9,7 +9,10 @@ console.log("Flashcard app loaded");
 // Your team decides the exact shape — agree on it before anyone
 // writes code that creates or reads cards.
 
-let cards = [];
+let cards = [
+  { id: 1, question: "What is a variable?", answer: "A named container for a value." },
+  { id: 2, question: "What is the goal of CSS ?", answer: " To create design for HTML content" }
+];
 
 
 // ── ADDING A CARD ────────────────────────────────────────────────
@@ -20,10 +23,25 @@ let cards = [];
 //   3. Save the updated deck (research: how to persist data in the browser)
 //   4. Update the card list on screen so it reflects the change
 
-function addCard(question, answer) {
-  // TODO
+function addcard(question, answer) {
+  //creating an array
+  // biggest number  
+  let largestID = cards[0].id // find largest number of card - last card's number 
+  for (let index = 0; index < cards.length; index++) {
+    const flashcard = cards[index].id 
+      if (flashcard > largestID) {
+        largestID = flashcard
+      }
+  }
+  const newcard = {
+   id: largestID + 1 ,
+   question,
+   answer
+  }
+  cards.push( newcard);
+  saveDeck();
+  renderCardList();
 }
-
 
 // ── SHOWING CARDS ON SCREEN ──────────────────────────────────────
 //
@@ -33,36 +51,91 @@ function addCard(question, answer) {
 // add a new <li> for each one.
 
 function renderCardList() {
-  // TODO
+  const listElement = document.getElementById("cardlist");
+  
+  // Clear the current list so we don't duplicate cards
+  listElement.innerHTML = ""; 
+  
+  // Loop through all cards and create an HTML list item for each
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    
+    const li = document.createElement("li");
+    li.textContent = card.question + " - " + card.answer;
+    
+    // Optional: Add a delete button to each list item
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.style.marginLeft = "10px";
+    deleteBtn.onclick = function() {
+      deletecard(card.id);
+    };
+    
+    li.appendChild(deleteBtn);
+    listElement.appendChild(li);
+  }
 }
-
 
 // ── DELETING A CARD ──────────────────────────────────────────────
 
-function deleteCard(id) {
+function deletecard(id) {
   // TODO: remove the card with this id from the cards array,
   //       save, and re-render
+  for (let i = 0; i < cards.length; i++) {
+    let selectedcard = cards[i];
+    if (selectedcard.id === id) {
+      cards.splice(i, 1);
+    }
+}
+  saveDeck();
+  renderCardList();
 }
 
 
 // ── STARTING A STUDY SESSION ─────────────────────────────────────
 //
-// Before studying you'll want to:
+// Before studying you'll want to:sessionCards.sort(() => Math.random() - 0.5);
+
 //   1. Shuffle a copy of the deck (research a fair shuffle algorithm)
 //   2. Switch the visible view from "manage" to "study"
 //   3. Show the first card
 
 function startStudy() {
-  // TODO
+ if (cards.length === 0) {
+    alert(" the cards should be added");
+    return; // This keyword immediately stops the function from running further
+  }
+  sessionCards = [...cards];
+  sessionCards.sort(() => Math.random() - 0.5);
+  currentCardIndex = 0;
+  document.getElementById("manage-view").classList.add("hidden");
+  document.getElementById("study-view").classList.remove("hidden");
+  showcard(sessionCards[currentCardIndex]);
+  const progressText = document.getElementById("progress-text");
+  if (progressText) {
+    progressText.textContent = "1/" + sessionCards.length;
+  }
+  
+  console.log("Study session started!");
+  
 }
 
 
 // ── SHOWING A CARD ───────────────────────────────────────────────
 
-function showCard(card) {
+function showcard(card) {
   // TODO: put the question text into the card element on screen,
   //       and make sure the card starts un-flipped (showing question)
+
+  // ids should match with html 
+  const cardelement = document.getElementById("flashcard"); 
+  const questionelement = document.getElementById("card-question");
+  const answerelement = document.getElementById("card-answer");
+  questionelement.textContent = card.question;
+  answerelement.textContent = card.answer;
+  cardelement.classList.remove("flipped");
 }
+
 
 
 // ── FLIPPING A CARD ──────────────────────────────────────────────
@@ -76,6 +149,14 @@ function showCard(card) {
 
 function flipCard() {
   // TODO
+  // CSS needed 
+  
+  const cardelement = document.getElementById("flashcard");
+  if (cardelement !== null) {
+    cardelement.classList.toggle("flipped");
+    console.log("Card flipped!");
+  }
+}
 }
 
 
@@ -84,6 +165,14 @@ function flipCard() {
 function nextCard() {
   // TODO: advance to the next card in the shuffled session,
   //       or end the session if there are no more cards
+currentCardIndex = currentCardIndex + 1
+if (currentCardIndex < sessionCards.length) {
+    let nextCardToShow = sessionCards[currentCardIndex];
+    showcard(nextCardToShow); 
+  } else {
+    console.log("You finished all the cards!");
+    currentCardIndex = 0;
+  }
 }
 
 
@@ -95,12 +184,30 @@ function nextCard() {
 // and parse it back into an array when loading.
 
 function saveDeck() {
-  // TODO
+  const cardsstring = JSON.stringify(cards);
+  localStorage.setItem("myFlashcards", cardsstring);
 }
 
-function loadDeck() {
+function forth() {
   // TODO: load saved cards on startup, or start with an empty array
+
+  const savedcards = localStorage.getItem("myFlashcards");
+  if (savedcards) {
+    cards = JSON.parse(savedcards);
+  } else {
+    if (!cards) {
+       cards = [];
+    }
+  }
 }
+
+//was in the document 
+//const li = document.createElement("li"); 
+//li.textContent = "forth card";
+ //cardList.appendChild (li);
+
+  // TODO: load saved cards on startup, or start with an empty array
+
 
 
 // ── EXPORT ───────────────────────────────────────────────────────
@@ -109,9 +216,21 @@ function loadDeck() {
 // Hint: look up Blob and URL.createObjectURL
 
 function exportDeck() {
-  // TODO
+  let data = JSON.stringify(cards, null, 2);
+  
+  // Create the blob using the 'data' variable we just made
+  let fileData = new Blob([data], { type: "application/json" });
+  
+  // Create the link using the 'fileData' blob
+  let link = URL.createObjectURL(fileData);
+  
+  let downloadButton = document.createElement("a");
+  downloadButton.href = link;
+  downloadButton.download = "my_flashcard_deck.json"; 
+  downloadButton.click();
+  URL.revokeObjectURL(link);
+  console.log("Deck downloaded");
 }
-
 
 // ── EVENT LISTENERS ──────────────────────────────────────────────
 //
@@ -119,19 +238,52 @@ function exportDeck() {
 // DOMContentLoaded fires once the HTML is fully parsed — a safe
 // place to do any setup that reads or writes to the page.
 
+// ── EVENT LISTENERS ──────────────────────────────────────────────
+
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("HTML fully loaded");
 
-  loadDeck();
+  // 1. Show the "Add Card" form when the button is clicked
+  const showFormBtn = document.getElementById("buttonaddcard");
+  const addCardForm = document.getElementById("add-form");
+  
+  if (showFormBtn && addCardForm) {
+    showFormBtn.addEventListener("click", function() {
+      addCardForm.style.display = "block";
+    });
+  }
 
-  // Once you have a form in your HTML, attach a submit listener:
-  //
-  // document.getElementById("add-form").addEventListener("submit", function (e) {
-  //   e.preventDefault(); // stops the page from refreshing
-  //   const question = document.getElementById("question-input").value.trim();
-  //   const answer   = document.getElementById("answer-input").value.trim();
-  //   addCard(question, answer);
-  // });
+  // 2. Handle the submission of the new card
+  if (addCardForm !== null) {
+    addCardForm.addEventListener("submit", function (event) {
+      event.preventDefault(); // Stop page refresh
+      console.log("Action: User submitted the Add Card form!");
+      
+      let typedQuestion = document.getElementById("question-input").value.trim();
+      let typedAnswer   = document.getElementById("answer-input").value.trim();
 
+      // Send the words over to the addcard function
+      addcard(typedQuestion, typedAnswer);
+
+      // Clean the text boxes for the next card
+      document.getElementById("question-input").value = "";
+      document.getElementById("answer-input").value = "";
+      console.log("New card sent to the deck, and form cleared");
+    });
+  } else {
+    console.log("No 'add-form' found on this specific page");
+  }
+  
   // Attach other listeners here as you build more features...
 
+  const flipBtn = document.getElementById("flip-btn");
+  if (flipBtn) {
+    flipBtn.addEventListener("click", flipCard);
+  }
+
+  const loneWolfBtn = document.getElementById("buttonlonewolf");
+  if (loneWolfBtn) {
+    loneWolfBtn.addEventListener("click", startStudy);
+  }
 });
+
