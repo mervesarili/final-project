@@ -280,6 +280,10 @@ document.addEventListener("DOMContentLoaded", function () {
   if (flipBtn) {
     flipBtn.addEventListener("click", flipCard);
   }
-  
+
+  const loneWolfBtn = document.getElementById("buttonlonewolf");
+  if (loneWolfBtn) {
+    loneWolfBtn.addEventListener("click", startStudy);
+  }
 });
 
