@@ -92,7 +92,7 @@ function showcard(card) {
   const cardelement = document.getElementById("flashcard"); 
   const questionelement = document.getElementById("card-question");
   const answerelement = document.getElementById("card-answer");
-  questionElement.textContent = card.question;
+  questionelement.textContent = card.question;
   answerelement.textContent = card.answer;
   cardelement.classList.remove("flipped");
 }
@@ -130,15 +130,15 @@ function nextCard() {
 
 function saveDeck() {
   const cardsstring = JSON.stringify(cards);
-  localstorage.setItem("myFlashcards", cardsString);
+  localStorage.setItem("myFlashcards", cardsstring);
 }
 
-function loadDeck() {
+function forth() {
   // TODO: load saved cards on startup, or start with an empty array
 
-  const savedcards = localstorage.getItem("myFlashcards");
+  const savedcards = localStorage.getItem("myFlashcards");
   if (savedcards) {
-    cards = JSON.parse(savedCards);
+    cards = JSON.parse(savedcards);
   } else {
     if (!cards) {
        cards = [];
@@ -147,9 +147,9 @@ function loadDeck() {
 }
 
 //was in the document 
-const li = document.createElement("li"); 
-li.textContent = "forth card";
- cardList.appendChild (li);
+//const li = document.createElement("li"); 
+//li.textContent = "forth card";
+ //cardList.appendChild (li);
 
   // TODO: load saved cards on startup, or start with an empty array
 
@@ -161,19 +161,20 @@ li.textContent = "forth card";
 // Hint: look up Blob and URL.createObjectURL
 
 function exportDeck() {
-  // TODO
   let data = JSON.stringify(cards, null, 2);
-  //Blob
-  let package = new Blob([textData], { type: "application/json" });
-  let link = URL.createObjectURL(digitalPackage);
-  // html link element 
+  
+  // Create the blob using the 'data' variable we just made
+  let fileData = new Blob([data], { type: "application/json" });
+  
+  // Create the link using the 'fileData' blob
+  let link = URL.createObjectURL(fileData);
+  
   let downloadButton = document.createElement("a");
   downloadButton.href = link;
   downloadButton.download = "my_flashcard_deck.json"; 
   downloadButton.click();
   URL.revokeObjectURL(link);
   console.log("Deck downloaded");
-}
 
 // ── EVENT LISTENERS ──────────────────────────────────────────────
 //
@@ -194,15 +195,15 @@ document.addEventListener("DOMContentLoaded", function () {
   //   addCard(question, answer);
   // });
 
-  loadDeck();
+  const li();
   // "Add Card" form in html form file by its ID.
   // make sure html has a form tag <form id="add-form">)
-  let addCardForm = document.getElementById("add-form");
+  let addcardform = document.getElementById("add-form");
 
   //check if the form actually exists 
-  if (addCardForm !== null) {
+  if (addcardform !== null) {
     // attach an alarm to the form
-    addCardForm.addEventListener("submit", function (event) {
+    addcardform.addEventListener("submit", function (event) {
       // stop the page from refreshing
       event.preventDefault(); 
       console.log("Action: User submitted the Add Card form!");
@@ -211,8 +212,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let typedQuestion = document.getElementById("question-input").value.trim();
       let typedAnswer   = document.getElementById("answer-input").value.trim();
 
-      // words sent over to addCard function so it can build the card
-      addCard(typedQuestion, typedAnswer);
+      // words sent over to addcard function so it can build the card
+      addcard(typedQuestion, typedAnswer);
 
       // text boxes clean and empty for the next card
       document.getElementById("question-input").value = "";
