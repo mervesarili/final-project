@@ -152,7 +152,7 @@ li.textContent = "forth card";
  cardList.appendChild (li);
 
   // TODO: load saved cards on startup, or start with an empty array
-}
+
 
 
 // ── EXPORT ───────────────────────────────────────────────────────
