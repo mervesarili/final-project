@@ -94,13 +94,30 @@ function deletecard(id) {
 
 // ── STARTING A STUDY SESSION ─────────────────────────────────────
 //
-// Before studying you'll want to:
+// Before studying you'll want to:sessionCards.sort(() => Math.random() - 0.5);
+
 //   1. Shuffle a copy of the deck (research a fair shuffle algorithm)
 //   2. Switch the visible view from "manage" to "study"
 //   3. Show the first card
 
 function startStudy() {
-  // TODO
+ if (cards.length === 0) {
+    alert(" the cards should be added");
+    return; // This keyword immediately stops the function from running further
+  }
+  sessionCards = [...cards];
+  sessionCards.sort(() => Math.random() - 0.5);
+  currentCardIndex = 0;
+  document.getElementById("manage-view").classList.add("hidden");
+  document.getElementById("study-view").classList.remove("hidden");
+  showcard(sessionCards[currentCardIndex]);
+  const progressText = document.getElementById("progress-text");
+  if (progressText) {
+    progressText.textContent = "1/" + sessionCards.length;
+  }
+  
+  console.log("Study session started!");
+  
 }
 
 
