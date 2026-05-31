@@ -56,9 +56,17 @@ function renderCardList() {
 
 // ── DELETING A CARD ──────────────────────────────────────────────
 
-function deleteCard(id) {
+function deletecard(id) {
   // TODO: remove the card with this id from the cards array,
   //       save, and re-render
+  for (let i = 0; i < cards.length; i++) {
+    let selectedcard = cards[i];
+    if (selectedcard.id === id) {
+      cards.splice(i, 1);
+    }
+}
+  saveDeck();
+  renderCardList();
 }
 
 
