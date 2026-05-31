@@ -175,6 +175,7 @@ function exportDeck() {
   downloadButton.click();
   URL.revokeObjectURL(link);
   console.log("Deck downloaded");
+}
 
 // ── EVENT LISTENERS ──────────────────────────────────────────────
 //
@@ -183,7 +184,17 @@ function exportDeck() {
 // place to do any setup that reads or writes to the page.
 
 document.addEventListener("DOMContentLoaded", function () {
- console.log("Status: Webpage HTML fully loaded. Starting up...");
+ console.log("HTML fully loaded");
+  // For buttons to work
+  const showFormBtn = document.getElementById("buttonaddcard");
+  const addCardForm = document.getElementById("add-form");
+  if (showFormBtn && addCardForm) {
+    showFormBtn.addEventListener("click", function() {
+      // 3. Unhide the form when clicked
+      addCardForm.style.display = "block";
+    });
+  }
+});
 
 
   // Once you have a form in your HTML, attach a submit listener:
@@ -218,10 +229,10 @@ document.addEventListener("DOMContentLoaded", function () {
       // text boxes clean and empty for the next card
       document.getElementById("question-input").value = "";
       document.getElementById("answer-input").value = "";
-      console.log("Success: New card sent to the deck, and form cleared!");
+      console.log("New card sent to the deck, and form cleared");
     });
   } else {
-    console.log("Notice: No 'add-form' found on this specific page.");
+    console.log("No 'add-form' found on this specific page");
   }
 
   
