@@ -219,10 +219,10 @@ document.addEventListener("DOMContentLoaded", function () {
       // text boxes clean and empty for the next card
       document.getElementById("question-input").value = "";
       document.getElementById("answer-input").value = "";
-      console.log("Success: New card sent to the deck, and form cleared!");
+      console.log("New card sent to the deck, and form cleared");
     });
   } else {
-    console.log("Notice: No 'add-form' found on this specific page.");
+    console.log("No 'add-form' found on this specific page");
   }
 
   
