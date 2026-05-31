@@ -9,7 +9,10 @@ console.log("Flashcard app loaded");
 // Your team decides the exact shape — agree on it before anyone
 // writes code that creates or reads cards.
 
-let cards = [];
+let cards = [
+  { id: 1, question: "What is a variable?", answer: "A named container for a value." },
+  { id: 2, question: "What is the goal of CSS ?", answer: " To create design for HTML content" }
+];
 
 
 // ── ADDING A CARD ────────────────────────────────────────────────
