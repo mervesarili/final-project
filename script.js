@@ -23,10 +23,25 @@ let cards = [
 //   3. Save the updated deck (research: how to persist data in the browser)
 //   4. Update the card list on screen so it reflects the change
 
-function addCard(question, answer) {
-  // TODO
+function addcard(question, answer) {
+  //creating an array
+  // biggest number  
+  let largestID = cards[0].id // find largest number of card - last card's number 
+  for (let index = 0; index < cards.length; index++) {
+    const FlashCard = cards[index].id 
+      if (flashcard > largestID) {
+        largestID = flashcard
+      }
+  }
+  const newcard = {
+   id: largestID + 1 ,
+   question,
+   answer
+  }
+  cards.push( newcard);
+  saveDeck();
+  renderCardList();
 }
-
 
 // ── SHOWING CARDS ON SCREEN ──────────────────────────────────────
 //
