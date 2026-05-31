@@ -6,13 +6,19 @@
   /* Colours — pick whatever fits your design */
   --color-bg:      #E2EEEB;
   --color-primary: #B73050;
-  --color-accent:  #58023B;
-  --color-extra:   #B4EFFF;
-  --color-contrast: #FFA30C;
+  --color-dark:  #58023B;
+  --color-secondary:   #B4EFFF;
+  --color-button: #FFA30C;
 
   /* Card size — adjust to taste */
   --card-width:  340px;
   --card-height: 200px;
+
+    /* Border radius */
+  --radius-large: 35px;
+  --radius-medium: 20px;
+  --radius-circle: 50%;
+
 }
 
 
@@ -28,6 +34,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-primary);
 }
+
 
 
 /* ── LAYOUT ─────────────────────────────────────────────────── */
