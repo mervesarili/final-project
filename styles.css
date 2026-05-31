@@ -39,16 +39,59 @@ body {
 
 /* ── LAYOUT ─────────────────────────────────────────────────── */
 /* TODO: style your header, main content area, views, etc. */
-h1 {
-    color: #58023B;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: larger;
-    background-color: #B73050;
-    border: 5px;
-    border-style: dotted;
-    border-color: #FFA30C;
-    padding: 2px;
+
+
+/* ── MANAGE VIEW LAYOUT ────────────── */
+
+.manage-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 100vh;
+
+    padding: 40px 60px;
 }
+
+/* Left column */
+.add-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Center column */
+.list-container {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 40px;
+}
+
+/* Right column */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 25px;
+}
+
+/* App title */
+.menu-container h1 {
+    color: var(--color-secondary);
+
+    font-size: 5rem;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
 
 /* ── CARD LIST (manage view) ─────────────────────────────────── */
 /* TODO: style the list of cards and the "add card" form */
