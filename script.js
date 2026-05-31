@@ -175,6 +175,7 @@ function exportDeck() {
   downloadButton.click();
   URL.revokeObjectURL(link);
   console.log("Deck downloaded");
+}
 
 // ── EVENT LISTENERS ──────────────────────────────────────────────
 //
