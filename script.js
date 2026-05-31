@@ -51,7 +51,29 @@ function addcard(question, answer) {
 // add a new <li> for each one.
 
 function renderCardList() {
-
+  const listElement = document.getElementById("cardlist");
+  
+  // Clear the current list so we don't duplicate cards
+  listElement.innerHTML = ""; 
+  
+  // Loop through all cards and create an HTML list item for each
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    
+    const li = document.createElement("li");
+    li.textContent = card.question + " - " + card.answer;
+    
+    // Optional: Add a delete button to each list item
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.style.marginLeft = "10px";
+    deleteBtn.onclick = function() {
+      deletecard(card.id);
+    };
+    
+    li.appendChild(deleteBtn);
+    listElement.appendChild(li);
+  }
 }
 
 // ── DELETING A CARD ──────────────────────────────────────────────
