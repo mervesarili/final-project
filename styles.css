@@ -21,7 +21,6 @@
 
 }
 
-
 /* ── RESET ──────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -36,9 +35,12 @@ body {
 }
 
 
-
 /* ── LAYOUT ─────────────────────────────────────────────────── */
 /* TODO: style your header, main content area, views, etc. */
+
+.hidden {
+    display: none;
+}
 
 
 /* ── MANAGE VIEW LAYOUT ────────────── */
@@ -46,59 +48,219 @@ body {
 .manage-layout {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+
+    align-items: stretch;
 
     min-height: 100vh;
 
-    padding: 40px 60px;
+     padding: 0 0 0 70px;
 }
 
-/* Left column */
-.add-card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+  /* Left column */
+  .add-card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
 
-/* Center column */
-.list-container {
-    flex: 1;
+  /* Center column */
+  .list-container {
+      flex: 1;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-    margin: 0 40px;
-}
+      margin: 0 40px;
+  }
 
-/* Right column */
-.menu-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  /* Right column */
+  .menu-container {
+      display: flex;
+      flex-direction: column;
 
-    gap: 25px;
-}
+      align-items: center;
+      justify-content: center;
 
-/* App title */
+      gap: 35px;
+
+      background-color: var(--color-primary);
+
+      border: 25px solid var(--color-dark);
+
+      padding-top: 160px;
+
+      height: 100vh;
+
+      width: 500px;
+      min-width: 420px;
+  }
+
+/* APP TITTLE */
+
 .menu-container h1 {
     color: var(--color-secondary);
 
-    font-size: 5rem;
+    font-size: 7rem;
 
     font-weight: bold;
 
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
  
+/* BUTTONS */
+
+.circle-btn {
+    width: 150px;
+    height: 150px;
+
+    border-radius: var(--radius-circle);
+
+    background-color: var(--color-button);
+
+    color: var(--color-secondary);
+
+    border: none;
+
+    font-size: 1.3rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+.menu-btn {
+    background-color: var(--color-button);
+
+    color: var(--color-secondary);
+
+    border: none;
+
+    border-radius: var(--radius-large);
+
+    padding: 20px 30px;
+
+    width: 230px;
+
+    font-size: 1.1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+/* HOVER EFFECTS */
+
+.menu-btn:hover {
+    transform: scale(1.05);
+}
+
+.circle-btn:hover {
+    transform: scale(1.05);
+}
 
 
 /* ── CARD LIST (manage view) ─────────────────────────────────── */
 /* TODO: style the list of cards and the "add card" form */
 
+#cardlist {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+  .card-item {
+      width: 100%;
+      
+      max-width: 700px;
+
+      padding: 20px 30px;
+
+      background-color: var(--color-primary);
+
+      color: var(--color-secondary);
+
+      border-radius: var(--radius-large);
+
+      font-size: 2rem;
+
+      font-weight: bold;
+
+      text-align: center;
+
+      cursor: pointer;
+
+      transition: 0.3s ease;
+  }
+
+/* ALTERNATE PURPLE CARDS */
+
+.card-item:nth-child(even) {
+    background-color: var(--color-dark);
+
+    color: var(--color-secondary);
+}
+
+/* HOVER EFFECT */
+
+.card-item:hover {
+    transform: translateX(5px);
+}
+
+
 
 /* ── THE FLASHCARD (study view) ─────────────────────────────── */
+
+/* STUDY VIEW LAYOUT */
+
+.study-section {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--color-bg);
+}
+
+  .study-header {
+    text-align: center;
+
+    padding: 30px;
+  }
+
+  .study-board {
+    flex: 1;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background-color: var(--color-primary);
+
+    border-top: 20px solid var(--color-dark);
+    border-bottom: 20px solid var(--color-dark);
+
+    padding: 40px;
+  }
+
+  .study-footer {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      padding: 40px;
+  }
+
 /*
    The flip animation is pure CSS — JavaScript only adds or removes
    a class (e.g. "flipped") on the card element.
@@ -119,6 +281,92 @@ body {
    Search: "CSS 3D card flip" for examples and explanations.
 */
 
+/* CARD STYLING */
+.card {
+    width: 900px;
+    height: 600px;
+
+    perspective: 1000px;
+}
+
+  .card-inner {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transition: transform 0.8s;
+
+    transform-style: preserve-3d;
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    backface-visibility: hidden;
+
+    border-radius: 60px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .card-front {
+    background-color: var(--color-secondary);
+
+    border: 10px solid var(--color-dark);
+
+    color: var(--color-dark);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+    .card-front::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 120px;
+
+      background-color: #b0b3c0;
+    }
+
+    .card-front h2 {
+    position: relative;
+
+    z-index: 1;
+
+    margin-top: 100px;
+    }
+
+  .card-back {
+    background-color: var(--color-dark);
+
+    border: 10px solid var(--color-secondary);
+
+    color: var(--color-secondary);
+
+    transform: rotateY(180deg);
+  }
+
+/* ANIMATION */
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
 
 /* ── BUTTONS ────────────────────────────────────────────────── */
 /* TODO */
@@ -135,3 +383,4 @@ body {
      // styles that only apply on wider screens
    }
 */
+
