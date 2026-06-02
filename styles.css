@@ -21,7 +21,6 @@
 
 }
 
-
 /* ── RESET ──────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -36,9 +35,12 @@ body {
 }
 
 
-
 /* ── LAYOUT ─────────────────────────────────────────────────── */
 /* TODO: style your header, main content area, views, etc. */
+
+.hidden {
+    display: none;
+}
 
 
 /* ── MANAGE VIEW LAYOUT ────────────── */
@@ -46,11 +48,12 @@ body {
 .manage-layout {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+
+    align-items: stretch;
 
     min-height: 100vh;
 
-    padding: 40px 60px;
+     padding: 0 0 0 70px;
 }
 
 /* Left column */
@@ -76,26 +79,141 @@ body {
 .menu-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
 
-    gap: 25px;
+    align-items: center;
+    justify-content: center;
+
+    gap: 35px;
+
+    background-color: var(--color-primary);
+
+    border: 25px solid var(--color-dark);
+
+    padding-top: 160px;
+
+    height: 100vh;
+
+    width: 500px;
+    min-width: 420px;
 }
 
-/* App title */
+
+/* APP TITTLE */
+
 .menu-container h1 {
     color: var(--color-secondary);
 
-    font-size: 5rem;
+    font-size: 7rem;
 
     font-weight: bold;
 
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
  
+/* BUTTONS */
 
+.circle-btn {
+    width: 150px;
+    height: 150px;
+
+    border-radius: var(--radius-circle);
+
+    background-color: var(--color-button);
+
+    color: var(--color-secondary);
+
+    border: none;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+.menu-btn {
+    background-color: var(--color-button);
+
+    color: var(--color-secondary);
+
+    border: none;
+
+    border-radius: var(--radius-large);
+
+    padding: 20px 30px;
+
+    width: 230px;
+
+    font-size: 1.1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+/* HOVER EFFECTS */
+
+.menu-btn:hover {
+    transform: scale(1.05);
+}
+
+.circle-btn:hover {
+    transform: scale(1.05);
+}
 
 /* ── CARD LIST (manage view) ─────────────────────────────────── */
 /* TODO: style the list of cards and the "add card" form */
+
+#cardlist {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.card-item {
+    width: 100%;
+    
+    max-width: 700px;
+
+    padding: 20px 30px;
+
+    background-color: var(--color-primary);
+
+    color: var(--color-secondary);
+
+    border-radius: var(--radius-large);
+
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+/* ALTERNATE PURPLE CARDS */
+
+.card-item:nth-child(even) {
+    background-color: var(--color-dark);
+
+    color: var(--color-secondary);
+}
+
+/* HOVER EFFECT */
+
+.card-item:hover {
+    transform: translateX(5px);
+}
+
+
 
 
 /* ── THE FLASHCARD (study view) ─────────────────────────────── */
