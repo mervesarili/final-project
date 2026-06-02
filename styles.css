@@ -56,47 +56,46 @@ body {
      padding: 0 0 0 70px;
 }
 
-/* Left column */
-.add-card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+  /* Left column */
+  .add-card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
 
-/* Center column */
-.list-container {
-    flex: 1;
+  /* Center column */
+  .list-container {
+      flex: 1;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-    margin: 0 40px;
-}
+      margin: 0 40px;
+  }
 
-/* Right column */
-.menu-container {
-    display: flex;
-    flex-direction: column;
+  /* Right column */
+  .menu-container {
+      display: flex;
+      flex-direction: column;
 
-    align-items: center;
-    justify-content: center;
+      align-items: center;
+      justify-content: center;
 
-    gap: 35px;
+      gap: 35px;
 
-    background-color: var(--color-primary);
+      background-color: var(--color-primary);
 
-    border: 25px solid var(--color-dark);
+      border: 25px solid var(--color-dark);
 
-    padding-top: 160px;
+      padding-top: 160px;
 
-    height: 100vh;
+      height: 100vh;
 
-    width: 500px;
-    min-width: 420px;
-}
-
+      width: 500px;
+      min-width: 420px;
+  }
 
 /* APP TITTLE */
 
@@ -124,7 +123,7 @@ body {
 
     border: none;
 
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
 
     cursor: pointer;
@@ -163,6 +162,7 @@ body {
     transform: scale(1.05);
 }
 
+
 /* ── CARD LIST (manage view) ─────────────────────────────────── */
 /* TODO: style the list of cards and the "add card" form */
 
@@ -175,29 +175,29 @@ body {
     gap: 20px;
 }
 
-.card-item {
-    width: 100%;
-    
-    max-width: 700px;
+  .card-item {
+      width: 100%;
+      
+      max-width: 700px;
 
-    padding: 20px 30px;
+      padding: 20px 30px;
 
-    background-color: var(--color-primary);
+      background-color: var(--color-primary);
 
-    color: var(--color-secondary);
+      color: var(--color-secondary);
 
-    border-radius: var(--radius-large);
+      border-radius: var(--radius-large);
 
-    font-size: 2rem;
+      font-size: 2rem;
 
-    font-weight: bold;
+      font-weight: bold;
 
-    text-align: center;
+      text-align: center;
 
-    cursor: pointer;
+      cursor: pointer;
 
-    transition: 0.3s ease;
-}
+      transition: 0.3s ease;
+  }
 
 /* ALTERNATE PURPLE CARDS */
 
@@ -215,8 +215,52 @@ body {
 
 
 
-
 /* ── THE FLASHCARD (study view) ─────────────────────────────── */
+
+/* STUDY VIEW LAYOUT */
+
+.study-section {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--color-bg);
+}
+
+  .study-header {
+    text-align: center;
+
+    padding: 30px;
+  }
+
+  .study-board {
+    flex: 1;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background-color: var(--color-primary);
+
+    border-top: 20px solid var(--color-dark);
+    border-bottom: 20px solid var(--color-dark);
+
+    padding: 40px;
+  }
+
+  .study-footer {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      padding: 40px;
+  }
+
 /*
    The flip animation is pure CSS — JavaScript only adds or removes
    a class (e.g. "flipped") on the card element.
@@ -237,6 +281,92 @@ body {
    Search: "CSS 3D card flip" for examples and explanations.
 */
 
+/* CARD STYLING */
+.card {
+    width: 900px;
+    height: 600px;
+
+    perspective: 1000px;
+}
+
+  .card-inner {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transition: transform 0.8s;
+
+    transform-style: preserve-3d;
+  }
+
+  .card-front,
+  .card-back {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    backface-visibility: hidden;
+
+    border-radius: 60px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .card-front {
+    background-color: var(--color-secondary);
+
+    border: 10px solid var(--color-dark);
+
+    color: var(--color-dark);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+    .card-front::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 120px;
+
+      background-color: #b0b3c0;
+    }
+
+    .card-front h2 {
+    position: relative;
+
+    z-index: 1;
+
+    margin-top: 100px;
+    }
+
+  .card-back {
+    background-color: var(--color-dark);
+
+    border: 10px solid var(--color-secondary);
+
+    color: var(--color-secondary);
+
+    transform: rotateY(180deg);
+  }
+
+/* ANIMATION */
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
 
 /* ── BUTTONS ────────────────────────────────────────────────── */
 /* TODO */
