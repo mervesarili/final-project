@@ -238,64 +238,63 @@ function exportDeck() {
 // DOMContentLoaded fires once the HTML is fully parsed — a safe
 // place to do any setup that reads or writes to the page.
 
-// ── EVENT LISTENERS ──────────────────────────────────────────────
-
 document.addEventListener("DOMContentLoaded", function () {
   console.log("HTML fully loaded");
   
   loadDeck(); 
 
-  // Index.html
+  // Index.html 
   const loneWolfBtn = document.getElementById("buttonlonewolf");
   if (loneWolfBtn) {
-    // if this button exists, we know we are on index.html
     renderCardList(); 
     loneWolfBtn.addEventListener("click", startStudy);
     
     const showFormBtn = document.getElementById("buttonaddcard");
     const addCardForm = document.getElementById("add-form");
     
-    showFormBtn.addEventListener("click", function() {
-      addCardForm.style.display = "block";
-    });
+    showFormBtn.addEventListener("click", () => addCardForm.style.display = "block");
 
     addCardForm.addEventListener("submit", function (event) {
       event.preventDefault(); 
-      let typedQuestion = document.getElementById("question-input").value.trim();
-      let typedAnswer   = document.getElementById("answer-input").value.trim();
-      addcard(typedQuestion, typedAnswer);
-      document.getElementById("question-input").value = "";
-      document.getElementById("answer-input").value = "";
+      let q = document.getElementById("question-input").value.trim();
+      let a = document.getElementById("answer-input").value.trim();
+      if(q && a) {
+        addcard(q, a);
+        addCardForm.reset(); // Clears the form
+      }
     });
   }
 
-  // Study.html 
+  // Study.html
   const studyView = document.getElementById("study-view");
   if (studyView) {
-    // If this element exists, we know we are on study.html
     sessionCards = [...cards];
-    sessionCards.sort(() => Math.random() - 0.5); // Shuffle
+    sessionCards.sort(() => Math.random() - 0.5); 
     currentCardIndex = 0;
     
-    // show the first card
-    showcard(sessionCards[currentCardIndex]);
-    
+    if (sessionCards.length > 0) {
+      showcard(sessionCards[currentCardIndex]);
+    } else {
+      alert("No cards found! Go back and add some.");
+      window.location.href = "index.html";
+    }
 
-    const flipBtn = document.getElementById("flip-btn");
-    flipBtn.addEventListener("click", flipCard);
+    // flip 
+    document.getElementById("flip-btn").addEventListener("click", flipCard);
 
-    // true and false buttons to move next card
-    const btnTrue = document.getElementById("buttontrue");
-    const btnFalse = document.getElementById("buttonfalse");
-    
-    btnTrue.addEventListener("click", function() {
-      console.log("Marked True");
-      nextCard();
-    });
+    // shuffle button
+    const shuffleBtn = document.getElementById("shuffle-btn");
+    if (shuffleBtn) {
+      shuffleBtn.addEventListener("click", () => {
+        sessionCards.sort(() => Math.random() - 0.5);
+        currentCardIndex = 0;
+        showcard(sessionCards[currentCardIndex]);
+      });
+    }
 
-    btnFalse.addEventListener("click", function() {
-      console.log("Marked False");
-      nextCard();
-    });
+    // buttons
+    document.getElementById("buttontrue").addEventListener("click", nextCard);
+    document.getElementById("buttonfalse").addEventListener("click", nextCard);
   }
-});
+}); 
+ 
