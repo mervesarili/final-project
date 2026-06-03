@@ -38,17 +38,17 @@ function addcard(question, answer) {
   } 
 
   for (let index = 0; index < cards.length; index++) {
-    const flashcard = cards[index].id 
-      if (flashcard > largestID) {
-        largestID = flashcard
-      }
+    const flashcard = cards[index].id
+    if (flashcard > largestID) {
+      largestID = flashcard
+    }
   }
   const newcard = {
-   id: largestID + 1 ,
-   question,
-   answer
+    id: largestID + 1,
+    question,
+    answer
   }
-  cards.push( newcard);
+  cards.push(newcard);
   saveDeck();
   renderCardList();
 }
@@ -62,27 +62,27 @@ function addcard(question, answer) {
 
 function renderCardList() {
   const listElement = document.getElementById("cardlist");
-  
+
   // Clear the current list so we don't duplicate cards
-  listElement.innerHTML = ""; 
-  
+  listElement.innerHTML = "";
+
   // Loop through all cards and create an HTML list item for each
   for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
-    
+
     const li = document.createElement("li");
     li.textContent = card.question + " - " + card.answer;
-    li.classList.add("card-item"); 
-    
+    li.classList.add("card-item");
+
     // Optional: Add a delete button to each list item
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "✖";
     deleteBtn.style.marginLeft = "8px";
-    deleteBtn.classList.add("deleteBtn"); 
-    deleteBtn.onclick = function() {
+    deleteBtn.classList.add("deleteBtn");
+    deleteBtn.onclick = function () {
       deletecard(card.id);
     };
-    
+
     li.appendChild(deleteBtn);
     listElement.appendChild(li);
   }
@@ -98,7 +98,7 @@ function deletecard(id) {
     if (selectedcard.id === id) {
       cards.splice(i, 1);
     }
-}
+  }
   saveDeck();
   renderCardList();
 }
@@ -112,7 +112,7 @@ function deletecard(id) {
 //   2. Switch the visible view from "manage" to "study"
 //   3. Show the first card
 
- function startStudy() {
+function startStudy() {
   if (cards.length === 0) {
     alert("add some cards");
     return; // stops the function 
@@ -128,7 +128,7 @@ function showcard(card) {
   //       and make sure the card starts un-flipped (showing question)
 
   // ids should match with html 
-  const cardelement = document.getElementById("flashcard"); 
+  const cardelement = document.getElementById("flashcard");
   const questionelement = document.getElementById("card-question");
   const answerelement = document.getElementById("card-answer");
   const progressText = document.getElementById("progress-text");
@@ -136,7 +136,7 @@ function showcard(card) {
   questionelement.textContent = card.question;
   answerelement.textContent = card.answer;
   cardelement.classList.remove("flipped"); // Ensure it resets to the front
-  
+
   // Update the 1/10 text
   if (progressText) {
     progressText.textContent = (currentCardIndex + 1) + "/" + sessionCards.length;
@@ -157,7 +157,7 @@ function showcard(card) {
 function flipCard() {
   // TODO
   // CSS needed 
-  
+
   const cardelement = document.getElementById("flashcard");
   if (cardelement !== null) {
     cardelement.classList.toggle("flipped");
@@ -172,10 +172,10 @@ function flipCard() {
 function nextCard() {
   // TODO: advance to the next card in the shuffled session,
   //       or end the session if there are no more cards
-currentCardIndex = currentCardIndex + 1
-if (currentCardIndex < sessionCards.length) {
+  currentCardIndex = currentCardIndex + 1
+  if (currentCardIndex < sessionCards.length) {
     let nextCardToShow = sessionCards[currentCardIndex];
-    showcard(nextCardToShow); 
+    showcard(nextCardToShow);
   } else {
     console.log("You finished all the cards!");
     currentCardIndex = 0;
@@ -195,9 +195,9 @@ function saveDeck() {
   localStorage.setItem("myFlashcards", cardsstring);
 }
 
-  // TODO: load saved cards on startup, or start with an empty array
+// TODO: load saved cards on startup, or start with an empty array
 
-  function loadDeck() { // Renamed from forth() for better readability
+function loadDeck() { // Renamed from forth() for better readability
   const savedcards = localStorage.getItem("myFlashcards");
   if (savedcards) {
     cards = JSON.parse(savedcards);
@@ -213,9 +213,9 @@ function saveDeck() {
 //was in the document 
 //const li = document.createElement("li"); 
 //li.textContent = "forth card";
- //cardList.appendChild (li);
+//cardList.appendChild (li);
 
-  // TODO: load saved cards on startup, or start with an empty array
+// TODO: load saved cards on startup, or start with an empty array
 
 
 
@@ -226,16 +226,16 @@ function saveDeck() {
 
 /*function exportDeck() {
   let data = JSON.stringify(cards, null, 2);
-  
+
   // Create the blob using the 'data' variable we just made
   let fileData = new Blob([data], { type: "application/json" });
-  
+
   // Create the link using the 'fileData' blob
   let link = URL.createObjectURL(fileData);
-  
+
   let downloadButton = document.createElement("a");
   downloadButton.href = link;
-  downloadButton.download = "my_flashcard_deck.json"; 
+  downloadButton.download = "my_flashcard_deck.json";
   downloadButton.click();
   URL.revokeObjectURL(link);
   console.log("Deck downloaded");
@@ -267,25 +267,25 @@ function downloadJSON() {
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("HTML fully loaded");
-  
-  loadDeck(); 
+
+  loadDeck();
 
   // Index.html 
   const loneWolfBtn = document.getElementById("buttonlonewolf");
   if (loneWolfBtn) {
-    renderCardList(); 
+    renderCardList();
     loneWolfBtn.addEventListener("click", startStudy);
-    
+
     const showFormBtn = document.getElementById("buttonaddcard");
     const addCardForm = document.getElementById("add-form");
-    
+
     showFormBtn.addEventListener("click", () => addCardForm.style.display = "block");
 
     addCardForm.addEventListener("submit", function (event) {
-      event.preventDefault(); 
+      event.preventDefault();
       let q = document.getElementById("question-input").value.trim();
       let a = document.getElementById("answer-input").value.trim();
-      if(q && a) {
+      if (q && a) {
         addcard(q, a);
         addCardForm.reset(); // Clears the form
       }
@@ -300,9 +300,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const studyView = document.getElementById("study-view");
   if (studyView) {
     sessionCards = [...cards];
-    sessionCards.sort(() => Math.random() - 0.5); 
+    sessionCards.sort(() => Math.random() - 0.5);
     currentCardIndex = 0;
-    
+
     if (sessionCards.length > 0) {
       showcard(sessionCards[currentCardIndex]);
     } else {
@@ -327,5 +327,68 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("buttontrue").addEventListener("click", nextCard);
     document.getElementById("buttonfalse").addEventListener("click", nextCard);
   }
-}); 
+
+
+  const fileInput = document.getElementById('jsonFileInput');
+  fileInput.addEventListener('change', function (event) {
+
+    const file = event.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const fileContent = e.target.result;
+      try {
+        const jsonData = JSON.parse(fileContent)
+        // sample object that is expected to be
+       //const data = [{ question: 'blblb', answer:'ghggv' }, { question, answer }]  
+
+
+        console.log ("Succesfully parsed JSON:", jsonData)
+
+       
+
+
+        for (let index = 0; index < jsonData.length; index++) {
+          const element = jsonData[index];
+
+          console.log (element.question)
+
+          if (element.question && element.answer) { 
+            console.log ("Adding card:", element.question, element.answer);
  
+            addcard (element.question, element.answer)
+
+        }  else {
+          console.warn ("invalid JSON")
+        }
+}
+      }
+
+
+      catch (error) {
+        console.error ("Error parsing JSON:", error )
+
+      }
+     
+
+    
+    };
+
+
+    reader.readAsText(file);
+
+
+  }
+)
+
+
+
+
+
+});
+
