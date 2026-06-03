@@ -29,7 +29,14 @@ let currentCardIndex = 0;
 function addcard(question, answer) {
   //creating an array
   // biggest number  
-  let largestID = cards[0].id // find largest number of card - last card's number 
+  let largestID = 0 // find largest number of card - last card's number 
+
+  const card = cards[0]
+
+  if(card){
+    largestID = cards[0].id
+  } 
+
   for (let index = 0; index < cards.length; index++) {
     const flashcard = cards[index].id 
       if (flashcard > largestID) {
