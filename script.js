@@ -103,11 +103,16 @@ function deletecard(id) {
 //   2. Switch the visible view from "manage" to "study"
 //   3. Show the first card
 
-function startStudy() {
- if (cards.length === 0) {
-    alert(" the cards should be added");
-    return; // This keyword immediately stops the function from running further
+  function startStudy() {
+  if (cards.length === 0) {
+    alert("add some cards");
+    return; // stops the function from running further
   }
+  }
+  
+  // study page in html
+  window.location.href = "study.html";
+}
   sessionCards = [...cards];
   sessionCards.sort(() => Math.random() - 0.5);
   currentCardIndex = 0;
@@ -134,9 +139,16 @@ function showcard(card) {
   const cardelement = document.getElementById("flashcard"); 
   const questionelement = document.getElementById("card-question");
   const answerelement = document.getElementById("card-answer");
+  const progressText = document.getElementById("progress-text");
+
   questionelement.textContent = card.question;
   answerelement.textContent = card.answer;
-  cardelement.classList.remove("flipped");
+  cardelement.classList.remove("flipped"); // Ensure it resets to the front
+  
+  // Update the 1/10 text
+  if (progressText) {
+    progressText.textContent = (currentCardIndex + 1) + "/" + sessionCards.length;
+  }
 }
 
 
@@ -191,16 +203,18 @@ function saveDeck() {
   localStorage.setItem("myFlashcards", cardsstring);
 }
 
-function forth() {
   // TODO: load saved cards on startup, or start with an empty array
 
+  function loadDeck() { // Renamed from forth() for better readability
   const savedcards = localStorage.getItem("myFlashcards");
   if (savedcards) {
     cards = JSON.parse(savedcards);
   } else {
-    if (!cards) {
-       cards = [];
-    }
+    // Start with default cards if localStorage is empty
+    cards = [
+      { id: 1, question: "What is a variable?", answer: "A named container for a value." },
+      { id: 2, question: "What is the goal of CSS?", answer: "To create design for HTML content" }
+    ];
   }
 }
 
