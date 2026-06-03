@@ -28,7 +28,16 @@
           <input type="text" id="answer-input" placeholder="Answer">
           <button type="submit">Save</button>
         </form>
+
+        <div class="importFileContainer">
+          <h3>Upload a JSON File</h3>
+          <input type="file" id="jsonFileInput" accept=".json" class="inputJsonFile">
+        </div>
+
       </div>
+
+
+
 
       <div class="container list-container">
         <ul id="cardlist">
@@ -61,66 +70,6 @@
 
 
 
-
-
-  <!-- ── VIEW: MANAGE DECK ──────────────────────────────────────
-         This is the screen where the user builds their deck.
-
-         Think about including:
-           - A form with a "question" field, an "answer" field,
-             and a submit button to add the card
-           - A list that shows all the cards added so far,
-             with a delete button on each one
-           - A "Start Studying" button (disabled when deck is empty)
-
-         When the user clicks "Start Studying", hide this section
-         and show the study section below — or navigate to a second
-         HTML page. Your team decides.
-
-         Option A — single page, two sections in this file.
-           Both sections exist in the HTML at the same time; you
-           hide one and show the other with JavaScript when the
-           user clicks a button:
-
-             // in your CSS:
-             .hidden { display: none; }
-
-             // in your JS:
-             function showView(viewId) {
-               document.getElementById("manage-view").classList.add("hidden");
-               document.getElementById("study-view").classList.add("hidden");
-               document.getElementById(viewId).classList.remove("hidden");
-             }
-
-             // then call it like:
-             showView("study-view");   // switch to study
-             showView("manage-view");  // switch back
-
-      
-    -->
-
-
-  <!-- ── VIEW: STUDY SESSION ────────────────────────────────────
-         This is the screen shown during a learning session.
-
-         Think about including:
-           - A visual "card" the user can click to flip and reveal
-             the answer (the flip itself is done with CSS — see
-             styles.css for hints on where to start)
-           - Buttons to mark the card correct or incorrect,
-             shown only after the card is flipped
-           - A way to see how many cards are left
-           - A "Back" or "End session" button
-
-    <section id="study-view">
-
-    </section>
-    -->
-
-
-
-
-  <!-- ── EXTRA CREDIT: TWO-PLAYER MODE ──────────────────────────── -->
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {

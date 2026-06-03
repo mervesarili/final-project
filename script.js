@@ -76,8 +76,9 @@ function renderCardList() {
     
     // Optional: Add a delete button to each list item
     const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
-    deleteBtn.style.marginLeft = "10px";
+    deleteBtn.textContent = "✖";
+    deleteBtn.style.marginLeft = "8px";
+    deleteBtn.classList.add("deleteBtn"); 
     deleteBtn.onclick = function() {
       deletecard(card.id);
     };
