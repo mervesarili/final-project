@@ -303,4 +303,3 @@ document.addEventListener("DOMContentLoaded", function () {
     loneWolfBtn.addEventListener("click", startStudy);
   }
 });
-
