@@ -65,6 +65,7 @@ function renderCardList() {
     
     const li = document.createElement("li");
     li.textContent = card.question + " - " + card.answer;
+    li.classList.add("card-item"); 
     
     // Optional: Add a delete button to each list item
     const deleteBtn = document.createElement("button");
@@ -103,24 +104,12 @@ function deletecard(id) {
 //   2. Switch the visible view from "manage" to "study"
 //   3. Show the first card
 
-function startStudy() {
- if (cards.length === 0) {
-    alert(" the cards should be added");
-    return; // This keyword immediately stops the function from running further
+ function startStudy() {
+  if (cards.length === 0) {
+    alert("add some cards");
+    return; // stops the function 
   }
-  sessionCards = [...cards];
-  sessionCards.sort(() => Math.random() - 0.5);
-  currentCardIndex = 0;
-  document.getElementById("manage-view").classList.add("hidden");
-  document.getElementById("study-view").classList.remove("hidden");
-  showcard(sessionCards[currentCardIndex]);
-  const progressText = document.getElementById("progress-text");
-  if (progressText) {
-    progressText.textContent = "1/" + sessionCards.length;
-  }
-  
-  console.log("Study session started!");
-  
+  window.location.href = "study.html";
 }
 
 
@@ -134,9 +123,16 @@ function showcard(card) {
   const cardelement = document.getElementById("flashcard"); 
   const questionelement = document.getElementById("card-question");
   const answerelement = document.getElementById("card-answer");
+  const progressText = document.getElementById("progress-text");
+
   questionelement.textContent = card.question;
   answerelement.textContent = card.answer;
-  cardelement.classList.remove("flipped");
+  cardelement.classList.remove("flipped"); // Ensure it resets to the front
+  
+  // Update the 1/10 text
+  if (progressText) {
+    progressText.textContent = (currentCardIndex + 1) + "/" + sessionCards.length;
+  }
 }
 
 
@@ -191,16 +187,18 @@ function saveDeck() {
   localStorage.setItem("myFlashcards", cardsstring);
 }
 
-function forth() {
   // TODO: load saved cards on startup, or start with an empty array
 
+  function loadDeck() { // Renamed from forth() for better readability
   const savedcards = localStorage.getItem("myFlashcards");
   if (savedcards) {
     cards = JSON.parse(savedcards);
   } else {
-    if (!cards) {
-       cards = [];
-    }
+    // Start with default cards if localStorage is empty
+    cards = [
+      { id: 1, question: "What is a variable?", answer: "A named container for a value." },
+      { id: 2, question: "What is the goal of CSS?", answer: "To create design for HTML content" }
+    ];
   }
 }
 
@@ -241,51 +239,63 @@ function exportDeck() {
 // DOMContentLoaded fires once the HTML is fully parsed — a safe
 // place to do any setup that reads or writes to the page.
 
-// ── EVENT LISTENERS ──────────────────────────────────────────────
-
 document.addEventListener("DOMContentLoaded", function () {
   console.log("HTML fully loaded");
-
-  // 1. Show the "Add Card" form when the button is clicked
-  const showFormBtn = document.getElementById("buttonaddcard");
-  const addCardForm = document.getElementById("add-form");
   
-  if (showFormBtn && addCardForm) {
-    showFormBtn.addEventListener("click", function() {
-      addCardForm.style.display = "block";
-    });
-  }
+  loadDeck(); 
 
-  // 2. Handle the submission of the new card
-  if (addCardForm !== null) {
-    addCardForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // Stop page refresh
-      console.log("Action: User submitted the Add Card form!");
-      
-      let typedQuestion = document.getElementById("question-input").value.trim();
-      let typedAnswer   = document.getElementById("answer-input").value.trim();
-
-      // Send the words over to the addcard function
-      addcard(typedQuestion, typedAnswer);
-
-      // Clean the text boxes for the next card
-      document.getElementById("question-input").value = "";
-      document.getElementById("answer-input").value = "";
-      console.log("New card sent to the deck, and form cleared");
-    });
-  } else {
-    console.log("No 'add-form' found on this specific page");
-  }
-  
-  // Attach other listeners here as you build more features...
-
-  const flipBtn = document.getElementById("flip-btn");
-  if (flipBtn) {
-    flipBtn.addEventListener("click", flipCard);
-  }
-
+  // Index.html 
   const loneWolfBtn = document.getElementById("buttonlonewolf");
   if (loneWolfBtn) {
+    renderCardList(); 
     loneWolfBtn.addEventListener("click", startStudy);
+    
+    const showFormBtn = document.getElementById("buttonaddcard");
+    const addCardForm = document.getElementById("add-form");
+    
+    showFormBtn.addEventListener("click", () => addCardForm.style.display = "block");
+
+    addCardForm.addEventListener("submit", function (event) {
+      event.preventDefault(); 
+      let q = document.getElementById("question-input").value.trim();
+      let a = document.getElementById("answer-input").value.trim();
+      if(q && a) {
+        addcard(q, a);
+        addCardForm.reset(); // Clears the form
+      }
+    });
   }
-});
+
+  // Study.html
+  const studyView = document.getElementById("study-view");
+  if (studyView) {
+    sessionCards = [...cards];
+    sessionCards.sort(() => Math.random() - 0.5); 
+    currentCardIndex = 0;
+    
+    if (sessionCards.length > 0) {
+      showcard(sessionCards[currentCardIndex]);
+    } else {
+      alert("No cards found! Go back and add some.");
+      window.location.href = "index.html";
+    }
+
+    // flip 
+    document.getElementById("flip-btn").addEventListener("click", flipCard);
+
+    // shuffle button
+    const shuffleBtn = document.getElementById("shuffle-btn");
+    if (shuffleBtn) {
+      shuffleBtn.addEventListener("click", () => {
+        sessionCards.sort(() => Math.random() - 0.5);
+        currentCardIndex = 0;
+        showcard(sessionCards[currentCardIndex]);
+      });
+    }
+
+    // buttons
+    document.getElementById("buttontrue").addEventListener("click", nextCard);
+    document.getElementById("buttonfalse").addEventListener("click", nextCard);
+  }
+}); 
+ 
