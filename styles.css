@@ -239,6 +239,7 @@ body {
   transform: translateX(5px);
 }
 
+/* ADD FORM */
 #add-form {
   display: flex !important;
 
@@ -414,8 +415,9 @@ body {
   align-items: center;
   overflow: hidden;
 
-  font-size: 3rem;
+  font-size: 1.8rem;
   font-weight: bold;
+  overflow-y: auto
 }
 
 .card-front {
@@ -424,6 +426,12 @@ body {
   border: 10px solid var(--color-dark);
 
   color: var(--color-dark);
+
+  padding:
+        180px
+        60px
+        60px
+        60px;
 
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
@@ -447,7 +455,7 @@ body {
 
   z-index: 1;
 
-  margin-top: 100px;
+   overflow: hidden;
 }
 
 .card-back {
@@ -458,6 +466,19 @@ body {
   color: var(--color-secondary);
 
   transform: rotateY(180deg);
+}
+
+#card-question,
+#card-answer {
+    text-align: center;
+
+    word-wrap: break-word;
+
+    overflow-wrap: break-word;
+
+    max-width: 100%;
+
+    line-height: 1.2;
 }
 
 /* ANIMATION */
