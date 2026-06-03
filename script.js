@@ -259,47 +259,60 @@ function exportDeck() {
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("HTML fully loaded");
-
-  // 1. Show the "Add Card" form when the button is clicked
-  const showFormBtn = document.getElementById("buttonaddcard");
-  const addCardForm = document.getElementById("add-form");
   
-  if (showFormBtn && addCardForm) {
+  loadDeck(); 
+
+  // Index.html
+  const loneWolfBtn = document.getElementById("buttonlonewolf");
+  if (loneWolfBtn) {
+    // if this button exists, we know we are on index.html
+    renderCardList(); 
+    loneWolfBtn.addEventListener("click", startStudy);
+    
+    const showFormBtn = document.getElementById("buttonaddcard");
+    const addCardForm = document.getElementById("add-form");
+    
     showFormBtn.addEventListener("click", function() {
       addCardForm.style.display = "block";
     });
-  }
 
-  // 2. Handle the submission of the new card
-  if (addCardForm !== null) {
     addCardForm.addEventListener("submit", function (event) {
-      event.preventDefault(); // Stop page refresh
-      console.log("Action: User submitted the Add Card form!");
-      
+      event.preventDefault(); 
       let typedQuestion = document.getElementById("question-input").value.trim();
       let typedAnswer   = document.getElementById("answer-input").value.trim();
-
-      // Send the words over to the addcard function
       addcard(typedQuestion, typedAnswer);
-
-      // Clean the text boxes for the next card
       document.getElementById("question-input").value = "";
       document.getElementById("answer-input").value = "";
-      console.log("New card sent to the deck, and form cleared");
     });
-  } else {
-    console.log("No 'add-form' found on this specific page");
   }
-  
-  // Attach other listeners here as you build more features...
 
-  const flipBtn = document.getElementById("flip-btn");
-  if (flipBtn) {
+  // Study.html 
+  const studyView = document.getElementById("study-view");
+  if (studyView) {
+    // If this element exists, we know we are on study.html
+    sessionCards = [...cards];
+    sessionCards.sort(() => Math.random() - 0.5); // Shuffle
+    currentCardIndex = 0;
+    
+    // show the first card
+    showcard(sessionCards[currentCardIndex]);
+    
+
+    const flipBtn = document.getElementById("flip-btn");
     flipBtn.addEventListener("click", flipCard);
-  }
 
-  const loneWolfBtn = document.getElementById("buttonlonewolf");
-  if (loneWolfBtn) {
-    loneWolfBtn.addEventListener("click", startStudy);
+    // true and false buttons to move next card
+    const btnTrue = document.getElementById("buttontrue");
+    const btnFalse = document.getElementById("buttonfalse");
+    
+    btnTrue.addEventListener("click", function() {
+      console.log("Marked True");
+      nextCard();
+    });
+
+    btnFalse.addEventListener("click", function() {
+      console.log("Marked False");
+      nextCard();
+    });
   }
 });
