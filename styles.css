@@ -4,30 +4,32 @@
    Changing a colour here updates it across the whole app.         */
 :root {
   /* Colours — pick whatever fits your design */
-  --color-bg:      #E2EEEB;
+  --color-bg: #E2EEEB;
   --color-primary: #B73050;
-  --color-dark:  #58023B;
-  --color-secondary:   #B4EFFF;
+  --color-dark: #58023B;
+  --color-secondary: #B4EFFF;
   --color-button: #FFA30C;
   --color-card-header: #b0b3c0;
 
   /* Card size — adjust to taste */
-  --card-width:  340px;
+  --card-width: 340px;
   --card-height: 200px;
 
-    /* Border radius */
+  /* Border radius */
   --radius-large: 35px;
   --radius-medium: 20px;
   --radius-circle: 50%;
 
-    /* Buttons */
+  /* Buttons */
   button {
     font-family: inherit;
   }
 }
 
 /* ── RESET ──────────────────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -44,288 +46,316 @@ body {
 /* TODO: style your header, main content area, views, etc. */
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 
 /* ── MANAGE VIEW LAYOUT ────────────── */
 
 .manage-layout {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    align-items: stretch;
+  align-items: stretch;
 
-    min-height: 100vh;
+  min-height: 100vh;
 
-     padding: 0 0 0 70px;
+  padding: 0 0 0 70px;
 }
 
-  /* Left column */
-  .add-card-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  }
+/* Left column */
+.add-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-  /* Center column */
-  .list-container {
-      flex: 1;
+/* Center column */
+.list-container {
+  flex: 1;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-      margin: 0 40px;
-  }
+  margin: 0 40px;
+}
 
-  /* Right column */
-  .menu-container {
-      display: flex;
-      flex-direction: column;
+/* Right column */
+.menu-container {
+  display: flex;
+  flex-direction: column;
 
-      align-items: center;
-      justify-content: center;
+  align-items: center;
+  justify-content: center;
 
-      gap: 35px;
+  gap: 35px;
 
-      background-color: var(--color-primary);
+  background-color: var(--color-primary);
 
-      border: 25px solid var(--color-dark);
+  border: 25px solid var(--color-dark);
 
-      padding-top: 160px;
+  padding-top: 160px;
 
-      height: 100vh;
+  height: 100vh;
 
-      width: 550px;
-      min-width: 420px;
-  }
+  width: 550px;
+  min-width: 420px;
+}
 
 /* APP TITTLE */
 
 .menu-container h1 {
-    color: var(--color-secondary);
+  color: var(--color-secondary);
 
-    font-size: 9rem;
+  font-size: 9rem;
 
-    font-weight: bold;
+  font-weight: bold;
 
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
- 
+
 /* MANAGE VIEW BUTTONS */
 
 .circle-btn {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
 
-    border-radius: var(--radius-circle);
+  border-radius: var(--radius-circle);
 
-    background-color: var(--color-button);
+  background-color: var(--color-button);
 
-    color: var(--color-dark);
+  color: var(--color-dark);
 
-    font-size: 1.3rem;
-    font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: bold;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
-  .circle-btn:hover {
-    transform: scale(1.05);
-  }
+
+.circle-btn:hover {
+  transform: scale(1.05);
+}
 
 .menu-btn {
-    background-color: var(--color-button);
+  background-color: var(--color-button);
 
-    color: var(--color-dark);
+  color: var(--color-dark);
 
-    border: 3px solid var(--color-dark);
+  border: 3px solid var(--color-dark);
 
-    border-radius: var(--radius-large);
+  border-radius: var(--radius-large);
 
-    padding: 20px 30px;
+  padding: 20px 30px;
 
-    width: 230px;
+  width: 230px;
 
-    font-size: 1.1rem;
-    font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: bold;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
-  .menu-btn:hover {
-    transform: scale(1.05);
-  }
+
+.menu-btn:hover {
+  transform: scale(1.05);
+}
 
 /* ── CARD LIST (manage view) ─────────────────────────────────── */
 /* TODO: style the list of cards and the "add card" form */
 
 #cardlist {
-    list-style: none;
+  list-style: none;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    gap: 20px;
+  gap: 20px;
 }
 
-  .card-item {
-      width: 100%;
-      
-      max-width: 700px;
+.card-item {
+  width: 100%;
 
-      padding: 20px 30px;
+  max-width: 700px;
 
-      background-color: var(--color-primary);
+  padding: 20px 30px;
 
-      color: var(--color-secondary);
+  background-color: var(--color-primary);
 
-      border-radius: var(--radius-large);
+  color: var(--color-secondary);
 
-      font-size: 2rem;
+  border-radius: var(--radius-large);
 
-      font-weight: bold;
+  font-size: 1.5rem;
 
-      text-align: center;
+  font-weight: bold;
 
-      cursor: pointer;
+  text-align: left;
 
-      transition: transform 0.3s ease;
-  }
+  cursor: pointer;
 
-    /* ALTERNATE PURPLE CARDS */
+  transition: transform 0.3s ease;
 
-    .card-item:nth-child(even) {
-        background-color: var(--color-dark);
+  display: flex;
+  justify-content: space-between;
+}
 
-        color: var(--color-secondary);
-    }
+/* ALTERNATE PURPLE CARDS */
 
-  /* HOVER EFFECT */
+.card-item:nth-child(even) {
+  background-color: var(--color-dark);
 
-  .card-item:hover {
-      transform: translateX(5px);
-  }
+  color: var(--color-secondary);
+}
+
+.deleteBtn {
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid var(--color-dark);
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: transform 0.3s ease;
+
+  background-color: var(--color-bg);
+
+  color: rgb(8, 8, 8);
+
+  flex-shrink: 0;
+}
+
+
+/* HOVER EFFECT */
+
+.card-item:hover {
+  transform: translateX(5px);
+}
 
 #add-form {
-    display: flex !important;
+  display: flex !important;
 
-    flex-direction: column !important;
+  flex-direction: column !important;
 
-    align-items: center;
+  align-items: center;
 
-    gap: 30px;
+  gap: 30px;
 
-    margin-top: 80px;
+  margin-top: 80px;
 }
 
-  #add-form input {
-    width: 200px;
-     
-    padding: 15px;
+#add-form input {
+  width: 200px;
 
-    border-radius: var(--radius-medium);
+  padding: 15px;
 
-    background-color: var(--color-secondary);
+  border-radius: var(--radius-medium);
 
-    color: var(--color-dark);
+  background-color: var(--color-secondary);
 
-    font-size: 1rem;
-  }
+  color: var(--color-dark);
 
-  #add-form button {
-    background-color: var(--color-button);
+  font-size: 1rem;
+}
 
-    color: var(--color-dark);
+#add-form button {
+  background-color: var(--color-button);
 
-    border: 2px solid var(--color-dark);
+  color: var(--color-dark);
 
-    border-radius: var(--radius-medium);
+  border: 2px solid var(--color-dark);
 
-    padding: 10px;
+  border-radius: var(--radius-medium);
 
-    font-size: 1rem;
+  padding: 10px;
 
-    cursor: pointer;
+  font-size: 1rem;
 
-    transition: transform 0.3s ease;
-  }
+  cursor: pointer;
 
-    #add-form button:hover {
-    transform: scale(1.05);
-    }
+  transition: transform 0.3s ease;
+}
+
+#add-form button:hover {
+  transform: scale(1.05);
+}
 
 /* ── THE FLASHCARD (study view) ─────────────────────────────── */
 
 /* STUDY VIEW LAYOUT */
 
 .study-section {
-    min-height: 100vh;
+  min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    background-color: var(--color-bg);
+  background-color: var(--color-bg);
 }
 
-  .study-header {
-    display: flex;
+.study-header {
+  display: flex;
 
-    justify-content: center;
+  justify-content: center;
 
-    align-items: center;
+  align-items: center;
 
-    gap: 40px;
+  gap: 40px;
 
-    padding: 30px 0;
-  }
-    .study-header::before,
-    .study-header::after {
-    content: "";
-
-    width: 250px;
-
-    height: 6px;
-
-    background-color: var(--color-dark);
-
-    border-radius: 10px;
-    }
-
-  .study-board {
-    flex: 1;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 100px;
-
-    background-color: var(--color-primary);
-
-    border-top: 20px solid var(--color-dark);
-    border-bottom: 20px solid var(--color-dark);
-
-    padding: 40px;
+  padding: 30px 0;
 }
 
-  .study-footer {
-    position: relative;
+.study-header::before,
+.study-header::after {
+  content: "";
 
-    display: flex;
+  width: 250px;
 
-    align-items: center;
+  height: 6px;
 
-    padding: 40px 60px;
+  background-color: var(--color-dark);
 
-    min-height: 120px;
+  border-radius: 10px;
 }
+
+.study-board {
+  flex: 1;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 100px;
+
+  background-color: var(--color-primary);
+
+  border-top: 20px solid var(--color-dark);
+  border-bottom: 20px solid var(--color-dark);
+
+  padding: 40px;
+}
+
+.study-footer {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 40px 60px;
+
+  min-height: 120px;
+}
+
 /*
    The flip animation is pure CSS — JavaScript only adds or removes
    a class (e.g. "flipped") on the card element.
@@ -348,241 +378,243 @@ body {
 
 /* CARD STYLING */
 .card {
-    width: 90%;
-    max-width: 900px;
+  width: 90%;
+  max-width: 900px;
 
-    height: 600px;
+  height: 600px;
 
-    perspective: 1000px;
+  perspective: 1000px;
 }
 
-  .card-inner {
-    position: relative;
+.card-inner {
+  position: relative;
 
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    transition: transform 0.8s;
+  transition: transform 0.8s;
 
-    transform-style: preserve-3d;
-  }
+  transform-style: preserve-3d;
+}
 
-  .card-front,
-  .card-back {
-    position: absolute;
+.card-front,
+.card-back {
+  position: absolute;
 
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    backface-visibility: hidden;
+  backface-visibility: hidden;
 
-    border-radius: 60px;
+  border-radius: 60px;
 
-    display: flex;
+  display: flex;
 
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 
-    font-size: 3rem;
-    font-weight: bold;
-  }
+  font-size: 3rem;
+  font-weight: bold;
+}
 
-  .card-front {
-    background-color: var(--color-secondary);
+.card-front {
+  background-color: var(--color-secondary);
 
-    border: 10px solid var(--color-dark);
+  border: 10px solid var(--color-dark);
 
-    color: var(--color-dark);
+  color: var(--color-dark);
 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
 
-    .card-front::before {
-      content: "";
+.card-front::before {
+  content: "";
 
-      position: absolute;
+  position: absolute;
 
-      top: 0;
-      left: 0;
+  top: 0;
+  left: 0;
 
-      width: 100%;
-      height: 120px;
+  width: 100%;
+  height: 120px;
 
-      background-color: var(--color-card-header);
-    }
+  background-color: var(--color-card-header);
+}
 
-    .card-front h2 {
-    position: relative;
+.card-front h2 {
+  position: relative;
 
-    z-index: 1;
+  z-index: 1;
 
-    margin-top: 100px;
-    }
+  margin-top: 100px;
+}
 
-  .card-back {
-    background-color: var(--color-dark);
+.card-back {
+  background-color: var(--color-dark);
 
-    border: 10px solid var(--color-secondary);
+  border: 10px solid var(--color-secondary);
 
-    color: var(--color-secondary);
+  color: var(--color-secondary);
 
-    transform: rotateY(180deg);
-  }
+  transform: rotateY(180deg);
+}
 
 /* ANIMATION */
 .card.flipped .card-inner {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 /* ── STUDY VIEW BUTTONS ──────────── */
 
 /* TRUE/FALSE BUTTONS */
 
-  .eval-btn {
-      width: 110px;
-      height: 110px;
+.eval-btn {
+  width: 110px;
+  height: 110px;
 
-      border-radius: 50%;
+  border-radius: 50%;
 
-      border: 5px solid var(--color-dark);
+  border: 5px solid var(--color-dark);
 
-      font-size: 4rem;
-      font-weight: bold;
+  font-size: 4rem;
+  font-weight: bold;
 
-      cursor: pointer;
+  cursor: pointer;
 
-      transition: transform 0.3s ease;
-  }
+  transition: transform 0.3s ease;
+}
 
-    .incorrect-bg {
-        background-color: var(--color-bg);
+.incorrect-bg {
+  background-color: var(--color-bg);
 
-        color: rgb(8, 8, 8);
-    }
+  color: rgb(8, 8, 8);
+}
 
-    .correct-bg {
-      background-color: var(--color-bg);
+.correct-bg {
+  background-color: var(--color-bg);
 
-      color: rgb(8, 8, 8);
-    }
+  color: rgb(8, 8, 8);
+}
 
-    .eval-btn:hover {
-      transform: scale(1.08);
-    }
+.eval-btn:hover {
+  transform: scale(1.08);
+}
 
-      .board-side {
-        display: flex;
+.board-side {
+  display: flex;
 
-        flex-direction: column;
+  flex-direction: column;
 
-        align-items: center;
+  align-items: center;
 
-        gap: 15px;
-      }
+  gap: 15px;
+}
 
-      .eval-label {
-        color: var(--color-secondary);
+.eval-label {
+  color: var(--color-secondary);
 
-        font-size: 1.3rem;
+  font-size: 1.3rem;
 
-        font-weight: bold;
-      }
+  font-weight: bold;
+}
 
 /* CARD FLIP BUTTON */
 
 .flip-btn {
-    background-color: var(--color-button);
+  background-color: var(--color-button);
 
-    color: var(--color-dark);
+  color: var(--color-dark);
 
-    border: 3px solid var(--color-dark);
+  border: 3px solid var(--color-dark);
 
-    border-radius: var(--radius-large);
+  border-radius: var(--radius-large);
 
-    padding: 20px 40px;
+  padding: 20px 40px;
 
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 
-    font-weight: bold;
+  font-weight: bold;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
-    .flip-btn:hover {
-      transform: scale(1.05);
-    }
 
-    .flip-action {
-      position: absolute;
+.flip-btn:hover {
+  transform: scale(1.05);
+}
 
-      left: 50%;
+.flip-action {
+  position: absolute;
 
-      transform: translateX(-50%);
-    }
+  left: 50%;
 
-  /* BACK BUTTON */
+  transform: translateX(-50%);
+}
+
+/* BACK BUTTON */
 
 .back-btn {
-    text-decoration: none;
+  text-decoration: none;
 
-    background-color: var(--color-secondary);
+  background-color: var(--color-secondary);
 
-    color: var(--color-dark);
+  color: var(--color-dark);
 
-    border: 3px solid var(--color-dark);
+  border: 3px solid var(--color-dark);
 
-    padding: 15px 30px;
+  padding: 15px 30px;
 
-    border-radius: var(--radius-large);
+  border-radius: var(--radius-large);
 
-    font-weight: bold;
+  font-weight: bold;
 
-    font-size: 1.2rem;
-} 
-  .back-to-menu {
-    position: absolute;
-
-    left: 60px;
-  }
-
-  /* SHUFFLE BUTTON */
-
-.shuffle-btn {
-    background-color: var(--color-secondary);
-
-    color: var(--color-dark);
-
-    border: 3px solid var(--color-dark);
-
-    padding: 15px 30px;
-
-    border-radius: var(--radius-large);
-
-    font-weight: bold;
-
-    font-size: 1.2rem;
-
-    cursor: pointer;
+  font-size: 1.2rem;
 }
 
-  .shuffle-action {
-    position: absolute;
+.back-to-menu {
+  position: absolute;
 
-    right: 60px;
-  }
+  left: 60px;
+}
+
+/* SHUFFLE BUTTON */
+
+.shuffle-btn {
+  background-color: var(--color-secondary);
+
+  color: var(--color-dark);
+
+  border: 3px solid var(--color-dark);
+
+  padding: 15px 30px;
+
+  border-radius: var(--radius-large);
+
+  font-weight: bold;
+
+  font-size: 1.2rem;
+
+  cursor: pointer;
+}
+
+.shuffle-action {
+  position: absolute;
+
+  right: 60px;
+}
 
 /* ── STUDY VIEW PROGRESS TITLE──────────── */
 
 .progress-title {
-    color: var(--color-dark);
+  color: var(--color-dark);
 
-    font-size: 3rem;
+  font-size: 3rem;
 
-    font-weight: bold;
+  font-weight: bold;
 
-    letter-spacing: 2px;
+  letter-spacing: 2px;
 }
 
 /* ── RESPONSIVE DESIGN ──────────────────────────────────────── */
@@ -600,70 +632,70 @@ body {
 
 @media (max-width: 900px) {
 
-    /* MANAGE VIEW */
+  /* MANAGE VIEW */
 
-    .manage-layout {
-        flex-direction: column;
+  .manage-layout {
+    flex-direction: column;
 
-        align-items: center;
+    align-items: center;
 
-        gap: 40px;
+    gap: 40px;
 
-        padding: 40px;
-    }
+    padding: 40px;
+  }
 
-    .menu-container {
-        width: 100%;
+  .menu-container {
+    width: 100%;
 
-        min-width: auto;
+    min-width: auto;
 
-        height: auto;
+    height: auto;
 
-        padding: 60px 20px;
-    }
+    padding: 60px 20px;
+  }
 
-    .menu-container h1 {
-        font-size: 5rem;
-    }
+  .menu-container h1 {
+    font-size: 5rem;
+  }
 
-    .card-item {
-        width: 90%;
-    }
+  .card-item {
+    width: 90%;
+  }
 
-    /* STUDY VIEW */
+  /* STUDY VIEW */
 
-    .study-board {
-        flex-direction: column;
+  .study-board {
+    flex-direction: column;
 
-        gap: 40px;
-    }
+    gap: 40px;
+  }
 
-    .card {
-        width: 90%;
+  .card {
+    width: 90%;
 
-        max-width: 700px;
+    max-width: 700px;
 
-        height: 400px;
-    }
+    height: 400px;
+  }
 
-    .study-footer {
-        flex-direction: column;
+  .study-footer {
+    flex-direction: column;
 
-        gap: 25px;
+    gap: 25px;
 
-        min-height: auto;
-    }
+    min-height: auto;
+  }
 
-    .back-to-menu,
-    .flip-action,
-    .shuffle-action {
-        position: static;
+  .back-to-menu,
+  .flip-action,
+  .shuffle-action {
+    position: static;
 
-        transform: none;
-    }
+    transform: none;
+  }
 
-    .study-header::before,
-    .study-header::after {
+  .study-header::before,
+  .study-header::after {
     width: 120px;
-    }
+  }
 }
