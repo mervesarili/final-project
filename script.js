@@ -103,29 +103,12 @@ function deletecard(id) {
 //   2. Switch the visible view from "manage" to "study"
 //   3. Show the first card
 
-  function startStudy() {
+ function startStudy() {
   if (cards.length === 0) {
     alert("add some cards");
-    return; // stops the function from running further
+    return; // stops the function 
   }
-  }
-  
-  // study page in html
   window.location.href = "study.html";
-}
-  sessionCards = [...cards];
-  sessionCards.sort(() => Math.random() - 0.5);
-  currentCardIndex = 0;
-  document.getElementById("manage-view").classList.add("hidden");
-  document.getElementById("study-view").classList.remove("hidden");
-  showcard(sessionCards[currentCardIndex]);
-  const progressText = document.getElementById("progress-text");
-  if (progressText) {
-    progressText.textContent = "1/" + sessionCards.length;
-  }
-  
-  console.log("Study session started!");
-  
 }
 
 
