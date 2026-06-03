@@ -224,7 +224,7 @@ function saveDeck() {
 // Research: "trigger file download from JavaScript"
 // Hint: look up Blob and URL.createObjectURL
 
-function exportDeck() {
+/*function exportDeck() {
   let data = JSON.stringify(cards, null, 2);
   
   // Create the blob using the 'data' variable we just made
@@ -239,7 +239,25 @@ function exportDeck() {
   downloadButton.click();
   URL.revokeObjectURL(link);
   console.log("Deck downloaded");
+}*/
+
+// EXPORT 
+// Make sure this exists and has data
+
+
+function downloadJSON() {
+  const jsonString = JSON.stringify(cards, null, 2);
+  const blob = new Blob([jsonString], { type: "application/json" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "export.json";
+  link.click();
 }
+
+
+
+
+
 
 // ── EVENT LISTENERS ──────────────────────────────────────────────
 //
@@ -271,6 +289,10 @@ document.addEventListener("DOMContentLoaded", function () {
         addcard(q, a);
         addCardForm.reset(); // Clears the form
       }
+      const exportBtn = document.getElementById("export");
+    if (exportBtn) {
+      exportBtn.addEventListener("click", downloadJSON);
+    }
     });
   }
 
