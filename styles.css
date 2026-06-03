@@ -9,6 +9,7 @@
   --color-dark:  #58023B;
   --color-secondary:   #B4EFFF;
   --color-button: #FFA30C;
+  --color-card-header: #b0b3c0;
 
   /* Card size — adjust to taste */
   --card-width:  340px;
@@ -19,6 +20,10 @@
   --radius-medium: 20px;
   --radius-circle: 50%;
 
+    /* Buttons */
+  button {
+    font-family: inherit;
+  }
 }
 
 /* ── RESET ──────────────────────────────────────────────────── */
@@ -189,7 +194,7 @@ body {
 
       cursor: pointer;
 
-      transition: 0.3s ease;
+      transition: transform 0.3s ease;
   }
 
     /* ALTERNATE PURPLE CARDS */
@@ -207,20 +212,15 @@ body {
   }
 
 #add-form {
-    display: flex;
+    display: flex !important;
 
-    flex-direction: column;
+    flex-direction: column !important;
 
     align-items: center;
 
     gap: 30px;
 
     margin-top: 80px;
-}
-
-#add-form {
-    display: flex !important;
-    flex-direction: column !important;
 }
 
   #add-form input {
@@ -348,7 +348,9 @@ body {
 
 /* CARD STYLING */
 .card {
-    width: 900px;
+    width: 90%;
+    max-width: 900px;
+
     height: 600px;
 
     perspective: 1000px;
@@ -407,7 +409,7 @@ body {
       width: 100%;
       height: 120px;
 
-      background-color: #b0b3c0;
+      background-color: var(--color-card-header);
     }
 
     .card-front h2 {
@@ -594,6 +596,75 @@ body {
      // styles that only apply on wider screens
    }
 */
+/* ── RESPONSIVE DESIGN ──────────────────────────────────────── */
 
+@media (max-width: 900px) {
 
+    /* MANAGE VIEW */
+
+    .manage-layout {
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 40px;
+
+        padding: 40px;
+    }
+
+    .menu-container {
+        width: 100%;
+
+        min-width: auto;
+
+        height: auto;
+
+        padding: 60px 20px;
+    }
+
+    .menu-container h1 {
+        font-size: 5rem;
+    }
+
+    .card-item {
+        width: 90%;
+    }
+
+    /* STUDY VIEW */
+
+    .study-board {
+        flex-direction: column;
+
+        gap: 40px;
+    }
+
+    .card {
+        width: 90%;
+
+        max-width: 700px;
+
+        height: 400px;
+    }
+
+    .study-footer {
+        flex-direction: column;
+
+        gap: 25px;
+
+        min-height: auto;
+    }
+
+    .back-to-menu,
+    .flip-action,
+    .shuffle-action {
+        position: static;
+
+        transform: none;
+    }
+
+    .study-header::before,
+    .study-header::after {
+    width: 120px;
+    }
+}
 
