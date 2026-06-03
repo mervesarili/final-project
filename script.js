@@ -65,6 +65,7 @@ function renderCardList() {
     
     const li = document.createElement("li");
     li.textContent = card.question + " - " + card.answer;
+    li.classList.add("card-item"); 
     
     // Optional: Add a delete button to each list item
     const deleteBtn = document.createElement("button");
