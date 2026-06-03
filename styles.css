@@ -9,6 +9,7 @@
   --color-dark:  #58023B;
   --color-secondary:   #B4EFFF;
   --color-button: #FFA30C;
+  --color-card-header: #b0b3c0;
 
   /* Card size — adjust to taste */
   --card-width:  340px;
@@ -19,6 +20,10 @@
   --radius-medium: 20px;
   --radius-circle: 50%;
 
+    /* Buttons */
+  button {
+    font-family: inherit;
+  }
 }
 
 /* ── RESET ──────────────────────────────────────────────────── */
@@ -93,7 +98,7 @@ body {
 
       height: 100vh;
 
-      width: 500px;
+      width: 550px;
       min-width: 420px;
   }
 
@@ -102,14 +107,14 @@ body {
 .menu-container h1 {
     color: var(--color-secondary);
 
-    font-size: 7rem;
+    font-size: 9rem;
 
     font-weight: bold;
 
     margin-bottom: 40px;
 }
  
-/* BUTTONS */
+/* MANAGE VIEW BUTTONS */
 
 .circle-btn {
     width: 150px;
@@ -119,9 +124,7 @@ body {
 
     background-color: var(--color-button);
 
-    color: var(--color-secondary);
-
-    border: none;
+    color: var(--color-dark);
 
     font-size: 1.3rem;
     font-weight: bold;
@@ -130,13 +133,16 @@ body {
 
     transition: transform 0.3s ease;
 }
+  .circle-btn:hover {
+    transform: scale(1.05);
+  }
 
 .menu-btn {
     background-color: var(--color-button);
 
-    color: var(--color-secondary);
+    color: var(--color-dark);
 
-    border: none;
+    border: 3px solid var(--color-dark);
 
     border-radius: var(--radius-large);
 
@@ -151,17 +157,9 @@ body {
 
     transition: transform 0.3s ease;
 }
-
-/* HOVER EFFECTS */
-
-.menu-btn:hover {
+  .menu-btn:hover {
     transform: scale(1.05);
-}
-
-.circle-btn:hover {
-    transform: scale(1.05);
-}
-
+  }
 
 /* ── CARD LIST (manage view) ─────────────────────────────────── */
 /* TODO: style the list of cards and the "add card" form */
@@ -196,24 +194,70 @@ body {
 
       cursor: pointer;
 
-      transition: 0.3s ease;
+      transition: transform 0.3s ease;
   }
 
-/* ALTERNATE PURPLE CARDS */
+    /* ALTERNATE PURPLE CARDS */
 
-.card-item:nth-child(even) {
-    background-color: var(--color-dark);
+    .card-item:nth-child(even) {
+        background-color: var(--color-dark);
 
-    color: var(--color-secondary);
+        color: var(--color-secondary);
+    }
+
+  /* HOVER EFFECT */
+
+  .card-item:hover {
+      transform: translateX(5px);
+  }
+
+#add-form {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center;
+
+    gap: 30px;
+
+    margin-top: 80px;
 }
 
-/* HOVER EFFECT */
+  #add-form input {
+    width: 200px;
+     
+    padding: 15px;
 
-.card-item:hover {
-    transform: translateX(5px);
-}
+    border-radius: var(--radius-medium);
 
+    background-color: var(--color-secondary);
 
+    color: var(--color-dark);
+
+    font-size: 1rem;
+  }
+
+  #add-form button {
+    background-color: var(--color-button);
+
+    color: var(--color-dark);
+
+    border: 2px solid var(--color-dark);
+
+    border-radius: var(--radius-medium);
+
+    padding: 10px;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+  }
+
+    #add-form button:hover {
+    transform: scale(1.05);
+    }
 
 /* ── THE FLASHCARD (study view) ─────────────────────────────── */
 
@@ -229,19 +273,39 @@ body {
 }
 
   .study-header {
-    text-align: center;
+    display: flex;
 
-    padding: 30px;
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 40px;
+
+    padding: 30px 0;
   }
+    .study-header::before,
+    .study-header::after {
+    content: "";
+
+    width: 250px;
+
+    height: 6px;
+
+    background-color: var(--color-dark);
+
+    border-radius: 10px;
+    }
 
   .study-board {
     flex: 1;
 
     display: flex;
 
-    justify-content: space-between;
+    justify-content: center;
 
     align-items: center;
+
+    gap: 100px;
 
     background-color: var(--color-primary);
 
@@ -249,18 +313,19 @@ body {
     border-bottom: 20px solid var(--color-dark);
 
     padding: 40px;
-  }
+}
 
   .study-footer {
-      display: flex;
+    position: relative;
 
-      justify-content: space-between;
+    display: flex;
 
-      align-items: center;
+    align-items: center;
 
-      padding: 40px;
-  }
+    padding: 40px 60px;
 
+    min-height: 120px;
+}
 /*
    The flip animation is pure CSS — JavaScript only adds or removes
    a class (e.g. "flipped") on the card element.
@@ -283,7 +348,9 @@ body {
 
 /* CARD STYLING */
 .card {
-    width: 900px;
+    width: 90%;
+    max-width: 900px;
+
     height: 600px;
 
     perspective: 1000px;
@@ -302,7 +369,7 @@ body {
 
   .card-front,
   .card-back {
-    position: relative;
+    position: absolute;
 
     width: 100%;
     height: 100%;
@@ -342,7 +409,7 @@ body {
       width: 100%;
       height: 120px;
 
-      background-color: #b0b3c0;
+      background-color: var(--color-card-header);
     }
 
     .card-front h2 {
@@ -368,9 +435,155 @@ body {
     transform: rotateY(180deg);
 }
 
-/* ── BUTTONS ────────────────────────────────────────────────── */
-/* TODO */
+/* ── STUDY VIEW BUTTONS ──────────── */
 
+/* TRUE/FALSE BUTTONS */
+
+  .eval-btn {
+      width: 110px;
+      height: 110px;
+
+      border-radius: 50%;
+
+      border: 5px solid var(--color-dark);
+
+      font-size: 4rem;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: transform 0.3s ease;
+  }
+
+    .incorrect-bg {
+        background-color: var(--color-bg);
+
+        color: rgb(8, 8, 8);
+    }
+
+    .correct-bg {
+      background-color: var(--color-bg);
+
+      color: rgb(8, 8, 8);
+    }
+
+    .eval-btn:hover {
+      transform: scale(1.08);
+    }
+
+      .board-side {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 15px;
+      }
+
+      .eval-label {
+        color: var(--color-secondary);
+
+        font-size: 1.3rem;
+
+        font-weight: bold;
+      }
+
+/* CARD FLIP BUTTON */
+
+.flip-btn {
+    background-color: var(--color-button);
+
+    color: var(--color-dark);
+
+    border: 3px solid var(--color-dark);
+
+    border-radius: var(--radius-large);
+
+    padding: 20px 40px;
+
+    font-size: 1.5rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+    .flip-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .flip-action {
+      position: absolute;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+    }
+
+  /* BACK BUTTON */
+
+.back-btn {
+    text-decoration: none;
+
+    background-color: var(--color-secondary);
+
+    color: var(--color-dark);
+
+    border: 3px solid var(--color-dark);
+
+    padding: 15px 30px;
+
+    border-radius: var(--radius-large);
+
+    font-weight: bold;
+
+    font-size: 1.2rem;
+} 
+  .back-to-menu {
+    position: absolute;
+
+    left: 60px;
+  }
+
+  /* SHUFFLE BUTTON */
+
+.shuffle-btn {
+    background-color: var(--color-secondary);
+
+    color: var(--color-dark);
+
+    border: 3px solid var(--color-dark);
+
+    padding: 15px 30px;
+
+    border-radius: var(--radius-large);
+
+    font-weight: bold;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+}
+
+  .shuffle-action {
+    position: absolute;
+
+    right: 60px;
+  }
+
+/* ── STUDY VIEW PROGRESS TITLE──────────── */
+
+.progress-title {
+    color: var(--color-dark);
+
+    font-size: 3rem;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
 
 /* ── RESPONSIVE DESIGN ──────────────────────────────────────── */
 /*
@@ -383,3 +596,74 @@ body {
      // styles that only apply on wider screens
    }
 */
+/* ── RESPONSIVE DESIGN ──────────────────────────────────────── */
+
+@media (max-width: 900px) {
+
+    /* MANAGE VIEW */
+
+    .manage-layout {
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 40px;
+
+        padding: 40px;
+    }
+
+    .menu-container {
+        width: 100%;
+
+        min-width: auto;
+
+        height: auto;
+
+        padding: 60px 20px;
+    }
+
+    .menu-container h1 {
+        font-size: 5rem;
+    }
+
+    .card-item {
+        width: 90%;
+    }
+
+    /* STUDY VIEW */
+
+    .study-board {
+        flex-direction: column;
+
+        gap: 40px;
+    }
+
+    .card {
+        width: 90%;
+
+        max-width: 700px;
+
+        height: 400px;
+    }
+
+    .study-footer {
+        flex-direction: column;
+
+        gap: 25px;
+
+        min-height: auto;
+    }
+
+    .back-to-menu,
+    .flip-action,
+    .shuffle-action {
+        position: static;
+
+        transform: none;
+    }
+
+    .study-header::before,
+    .study-header::after {
+    width: 120px;
+    }
+}
